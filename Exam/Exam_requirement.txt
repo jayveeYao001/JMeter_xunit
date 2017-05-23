@@ -1,0 +1,18 @@
+﻿# 注: 本示例需求中，为保持简单，先不考虑数据内容校验的问题
+
+Rest2各接口通用GET地址: "${url}/${pre}/${sid}${op}?token=${token}${data}"
+    url: 形如 "http://127.0.0.1:8888"
+    sid: 4位[小写字母or数字] 即正则=r"[a-z\d]{4}"
+    token: 6位[大写字母or数字] 即正则=r"[A-Z\d]{6}"
+    pre: ="2014-06-30/Accounts"
+    op:  各接口不同定义 /*
+    data: 各接口不同定义 空或&*
+Rest2返回值JSON格式: '{"resp":{"respCode":${code} ${other}}}'
+    code:   成功时="000000" 失败时="999999"
+    other:  成功时=各接口不同定义  失败时=空
+
+Rest2_GetCliById接口:
+    op="/Clients", data="&cliId=${cliId}", other=',"client":{"cliId":${cliId}}'
+    cliId: 7位[数字] 即正则=r"[\d]{7}"
+Rest2_GetSrv接口:
+    op="", data="", other=',"account":{"accountSid":${sid},"nickName":"nickName"}'

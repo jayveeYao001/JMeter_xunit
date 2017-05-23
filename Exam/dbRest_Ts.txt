@@ -1,0 +1,6 @@
+__Name__~__Value__~__Description__
+acti0_SId~af4767a00ac89fb3957a03ff712b87d4~# 有效的0_开发者账号
+acti0_Token~b6ba992d246646f58ecdcecc8920f9f4~# 有效的0_开发者令牌
+acti0_Appid~232c6c90f114488bb0f1811cfad07a4c~# 有效的0_开发者应用ID
+C_Suc~000000~#respCode=suc
+C_Fail~999999~#respCode=fail

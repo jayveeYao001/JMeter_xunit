@@ -1,0 +1,1522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta content="shanhe.me" name="Author"><title>JMeter Test Results</title><style type="text/css">
+            
+                * { margin: 0; padding: 0 }
+                html, body { width: 100%; height: 100%; background: #b4b4b4; font-size: 12px }
+                table { border: none; border-collapse: collapse; table-layout: fixed }
+                td { vertical-align: baseline; font-size: 12px }
+                #left-panel { position: absolute; left: 0; top: 0; bottom: 0; width: 300px; overflow: auto; background: #dee4ea }
+                #left-panel li.navigation { font-weight: bold; cursor: default; color: #9da8b2; line-height: 18px; background-position: 12px 5px; background-repeat: no-repeat; padding: 0 0 0 25px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAICAYAAAArzdW1AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBQqGbO7BEcAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAKRJREFUGNN1zM0KgkAYheF3RvtXSsGyWhRNaILS7bdt11W0KgJvoPwZp0UlBPUtz3nOJw7Hk7necv5dOA2Qaazo2vZP0LEt9olCVtqQROufKNmuqBuBNAYW4QzXGX6B0bDPcjGnMQYJ8Cg12U59oSzaUJQa4IUAXMclDHwAAn/MxPMw765FZd2QRgopBWmsKCrdfhXnS/4ZYElBXdyxewN008Y8AephLAkqz613AAAAAElFTkSuQmCC) }
+                #left-panel li.success { color: #565b60 }
+                #left-panel li.failure { color: red }
+                #left-panel li { list-style: none; color: black; cursor: pointer }
+                #left-panel li.selected { background-repeat: repeat-x; color: white; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAYAAABMDlehAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBQxLTs5O2gAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAEdJREFUCNc1y7ERgEAMA0GNUhIyGqM2uqKgtyWZhE9v53A/7/A6D7BkMDNgy2AroB2wHTCZv5UMOgFLG1bvd7XBckBlwCXjA5wMOF5iOX/MAAAAAElFTkSuQmCC) }
+                #left-panel div { line-height: 20px; background-position: 25px 3px; background-repeat: no-repeat; padding: 0 0 0 45px }
+                #left-panel div.success { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBULEEc6wzcAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAiNJREFUKM99kktIVGEYhp/jzJl08lI6logp2Y2EFkbtaqlFROsWrlq4ioJWQRs37VoUVItWkYEVRGSBlhleCpywDEWxTEuxcURTZ6YzxzP/5WshCOHUt36f93kXnyMi5Lsnb4clI4s4fhkXzp5w8mWcfHBvfEpUxVdCUUU6lUPNHuD86cYtBQX5GhPrM7hRg7GaSDRg2vuUd90WuOPVsOyqy6FFo2yOQHlU1S9z9dZT+S/8I7GCLlkAN4eyAf56mnT6Fy1HLnGuuYa++MS/4e74qMRqfXLaJ9BpfnsrLC0m2BYuoqwUbj/+274JD43OEqmexwvW8NUKXnaZtVSS1pNtAAyOvyC6v48HnUNb4Z7PH8UtTlIQWA5tb2RhYY7kz3l2FleytJYg/qWb8t2KZ/0PN+1hgI6uEUr2jpHKpGlquExVaS0VbjUZL7WxaqIXK6ADQ0n9GNfv9XCttWnD/O57t0TKFklnF3g5fJ/seoaa2D4O1x0F4PlgO9oIftbgFgYMfLgjACGqj0vlsddoUnj+Kt/mxunq72RP+UGqYjWMTA7R+b6dUCSEGEF5hoJQip6BaFs4HJtCyRrKs6wHCovDip/kys0WWpovMpOYBCtoT2N9B5uzWG0Zid8gnFrVFEQDtBaUrxEgXBimaEeER2/uIiK4roPOaMRYjBKsFly3fOO3G06dETGCWIsYjckprMphtEKMAQtgsMYi1mJMQHJ6xvkDKQoyphCzkl0AAAAASUVORK5CYII=) }
+                #left-panel div.failure { color: red; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBUJOEC5CU8AAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAeVJREFUKM+NkDtok2EUhp8vl9ZLo/EyKI6KFgqCKC4OClrBWUQEcRRx1cGpk3WyInWrgoMZKkW8thYaEYQ0i7WC2ngrNDTERHJvkv/L/3//dxwc7F8jeOAsh/c973OOEhG61aPnaen7maXYt4MLZ4+pbppQt+F06jNH3QWOb8pxUs+SmJzjv83hxY8SVy3wNdtVneiHqe54IhLoB4/TUkyMyOrKj5yXoVtPZK02kLyYK7OnlqFWzgcCGtUC/YUJ3n5a/jd28tU7ORTN0myUA6Jms8bpWIa798elqzn1fokjThrpVBC3ETzNbYAuca59j/Hp+b/N869Tsk8tgVMCXQk+RlfQuk1/tMLMwzsSMCcm5zjhvoR2AdpF0GuwO4aqttS05ZSbZHhsBoAIwI83Cdkd/460XDAOG02d24MxvlR8dsUUh3f2UHaEtgdbWCHz4oZwcVCp66PP5FLhKjEc8DXaCMsNy8DYn/SnZ+L0hhWOb/F8yLs9fDtwk8j+VpqwrlC34PrgGEu2bhlYhZ1b8dncq3AMeBaUr/k6NUyk4ChKzu+N2hc6Bqody+WDG8g2fLatD7F3axjPgmvAtYJvIbouhhIRrl0ZktnkBGIt1gqeMXQ8D2MMiCIUCqFEsFhEQMSykCuqX0MzLAUJTzRsAAAAAElFTkSuQmCC) }
+                #left-panel div.detail { display: none }
+                #right-panel { position: absolute; right: 0; top: 0; bottom: 0; left: 301px; overflow: auto; background: white }
+                #right-panel .group { font-size: 12px; font-weight: bold; line-height: 16px; padding: 0 0 0 18px; counter-reset: assertion; background-repeat: repeat-x; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAQCAYAAADXnxW3AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBUkDq8pxjkAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAADdJREFUCNdVxrERwDAMAzGK0v47eS6Z927SpMFBAAbkvSvnRk5+7K5cVfLMyN39bWakJAjA5xw9R94jN3tVhVEAAAAASUVORK5CYII=) }
+                #right-panel .zebra { background-repeat: repeat; padding: 0 0 0 18px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAYAAAAFvPEHAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBYWFlNztEcAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAABdJREFUCNdjYKAtePv5338mBgYGBpoQAGy1BAJlb/y6AAAAAElFTkSuQmCC) }
+                #right-panel .data { line-height: 19px; white-space: nowrap }
+                #right-panel pre.data { white-space: pre }
+                #right-panel tbody.failure { color: red }
+                #right-panel td.key { min-width: 108px }
+                #right-panel td.delimiter { min-width: 18px }
+                #right-panel td.assertion:before { counter-increment: assertion; content: counter(assertion) ". " }
+                #right-panel td.assertion { color: black }
+                #right-panel .trail { border-top: 1px solid #b4b4b4 }
+                
+            </style><script type="text/javascript">
+            
+                var onclick_li = (function() {
+                    var last_selected = null;
+                    return function(li) {
+                        if( last_selected == li )
+                            return;
+                        if( last_selected )
+                            last_selected.className = "";
+                        last_selected = li;
+                        last_selected.className = "selected";
+                        document.getElementById("right-panel").innerHTML = last_selected.firstChild.nextSibling.innerHTML;
+                        return false;
+                    };
+                })();
+                
+                var patch_timestamp = function() {
+                    var spans = document.getElementsByTagName("span");
+                    var len = spans.length;
+                    for( var i = 0; i < len; ++i ) {
+                        var span = spans[i];
+                        if( "patch_timestamp" == span.className )
+                            span.innerHTML = new Date( parseInt( span.innerHTML ) );
+                    }
+                };
+                
+                var patch_navigation_class = (function() {
+                
+                    var set_class = function(el, flag) {
+                        if(el) {
+                            el.className += flag ? " success" : " failure";
+                        }
+                    };
+                
+                    var traverse = function(el, group_el, flag) {
+                        while(1) {
+                            if(el) {
+                                if(el.className == 'navigation') {
+                                    set_class(group_el, flag);
+                                    group_el = el;
+                                    flag = true;
+                                } else {
+                                    var o = el.firstChild;
+                                    o = o ? o.className : null;
+                                    flag = flag ? (o == 'success') : false;
+                                }
+                                el = el.nextSibling;
+                            } else {
+                                set_class(group_el, flag);
+                                break;
+                            }
+                        }
+                    };
+                    
+                    return function() {
+                        var o = document.getElementById("result-list");
+                        o = o ? o.firstChild : null;
+                        if(o)
+                            traverse(o, null, true);
+                    };
+                })();
+        
+                window.onload = function() {
+                    patch_timestamp();
+                    patch_navigation_class();
+                    var o = document.getElementById("result-list");
+                    o = o ? o.firstChild : null;
+                    o = o ? o.nextSibling : null;
+                    if(o)
+                        onclick_li(o);
+                };
+                
+                //
+                function show(this_testFlag, flag) {
+                    console.log('flag=' +flag +'    this=');
+                    console.log(this_testFlag);
+                    var eleLs= document.getElementsByName(flag);
+                    for (var i=0; i<eleLs.length; i++) {
+                        if (this_testFlag.textContent == eleLs[i].firstChild.firstChild.textContent) {
+                            ele = eleLs[i];
+                            break;
+                        }
+                    }
+                    ele.style.display = (ele.style.display=='none'?'':'none');
+                };
+                
+            
+            </script></head><body><div id="left-panel"><li onclick="show(this,'tmSw')" name="TestModule" class="failure">Exam.Intf] 示例接口</li><div style="display:none" name="tmSw"><div class="success">Exam.Intf] 示例接口</div><li onclick="show(this,'tiSw')" name="TestItem" class="success">Exam.Intf-0]</li><div style="display:none" name="tiSw"><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-0]</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028207509</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">1 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">970</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@5828db04
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.s_CaseId=00
+V.s_CasePath=Exam.Intf-0.00
+V.s_ItemId=0
+V.s_ItemPath=Exam.Intf-0
+V.s_ModuleId=Exam.Intf
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-0.00) 1&gt; Module_Setup1</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028207511</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1012</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@3b3df208
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.s_CaseId=00
+V.s_CasePath=Exam.Intf-0.00
+V.s_ItemId=0
+V.s_ItemPath=Exam.Intf-0
+V.s_ModuleId=Exam.Intf
+V.s_Step=Exam.Intf-0.00) 1&gt; Module_Setup1
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li></div><li onclick="show(this,'tiSw')" name="TestItem" class="failure">Exam.Intf.1] Client信息查询（Client号码）</li><div style="display:none" name="tiSw"><li onclick="return onclick_li(this);"><div class="success">Exam.Intf.1] Client信息查询（Client号码）</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028207628</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1331</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@2234fc40
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.s_Case=
+V.s_CaseId=x
+V.s_CasePath=Exam.Intf-0.00
+V.s_Item=1] Client信息查询（Client号码）
+V.s_ItemId=1
+V.s_ItemPath=Exam.Intf-1
+V.s_ModuleId=Exam.Intf
+V.s_Pri=99
+V.s_Step=Exam.Intf-0.00) 1&gt; Module_Setup1
+V.s_Sw=
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s_n0=_data
+V.s_n1=_token
+V.s_n2=_e_code
+V.s_n3=_e_cliId
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=_data
+V.s_v1=_token
+V.s_v2=_e_code
+V.s_v3=_e_cliId
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">@Case</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208285</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-1.1) 参数均正确，应成功</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208324</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1582</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+=0
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@2aead945
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._data=&amp;cliId=${DB.Rest_CliId}
+V._e_cliId=${DB.Rest_CliId}
+V._e_code=${__eval(000000)}
+V._token=${DB.Rest_Token}
+V.s_Case=参数均正确，应成功
+V.s_CaseId=1
+V.s_CasePath=Exam.Intf-1.1
+V.s_Item=
+V.s_ItemId=1
+V.s_ItemPath=Exam.Intf-1
+V.s_ModuleId=Exam.Intf
+V.s_Pri=0
+V.s_Step=Exam.Intf-0.00) 1&gt; Module_Setup1
+V.s_Sw=y
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s_n0=_data
+V.s_n1=_token
+V.s_n2=_e_code
+V.s_n3=_e_cliId
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=&amp;cliId=${DB.Rest_CliId}
+V.s_v1=${DB.Rest_Token}
+V.s_v2=${__eval(000000)}
+V.s_v3=${DB.Rest_CliId}
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-1.1.1&gt; 查询cliId;# Rest2_GetCliById.rest_get</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208423</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">197 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">156 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">3014</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class=""><tr><td colspan="3" class="data assertion">AutoChkClean</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">
+
+    //sucMsg:
+    code: (fact=000000)  ==  (expe=000000);
+    cliId: (fact=client7)  ==  (expe=client7);</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data">GET http://127.0.0.1:8888/2014-06-30/Accounts/sid4/Clients?token=TOKEN6&amp;cliId=client7</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Host: 127.0.0.1:8888
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_121)
+</pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 200 OK
+Content-Type: text/plain
+Date: Tue, 31 Mar 2015 12:54:48 GMT
+Server: WSGIServer 0.2
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">{"resp":{"respCode":"000000","client":{"cliId":"client7"}}}</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data">SamplerProperties:
+HTTPSampler.DO_MULTIPART_POST=false
+HTTPSampler.auto_redirects=false
+HTTPSampler.connect_timeout=
+HTTPSampler.contentEncoding=
+HTTPSampler.domain=127.0.0.1
+HTTPSampler.embedded_url_re=
+HTTPSampler.follow_redirects=true
+HTTPSampler.method=GET
+HTTPSampler.monitor=false
+HTTPSampler.path=/2014-06-30/Accounts/sid4/Clients?token=TOKEN6&amp;cliId=client7
+HTTPSampler.port=8888
+HTTPSampler.protocol=http
+HTTPSampler.response_timeout=
+HTTPSampler.use_keepalive=true
+HTTPsampler.Arguments=
+TestElement.enabled=true
+TestElement.gui_class=org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui
+TestElement.name=Exam.Intf-1.1.1&gt; 查询cliId;# Rest2_GetCliById.rest_get
+TestElement.test_class=org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy
+
+JMeterVariables:
+=0
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@7e7fc585
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._data=&amp;cliId=${DB.Rest_CliId}
+V._e_cliId=${DB.Rest_CliId}
+V._e_code=${__eval(000000)}
+V._token=${DB.Rest_Token}
+V.l_CHK=code, cliId
+V.l_DFT_e_code=000000
+V.l_DFT_ip=127.0.0.1
+V.l_DFT_port=8888
+V.l_DFT_pre=/2014-06-30/Accounts
+V.l_DFT_pro=http
+V.l_DFT_sid=sid4
+V.l_DFT_token=TOKEN6
+V.l_FACTMUST=`G_FALSE`
+V.l_MUST_dv=data, op, pre
+V.l_data=&amp;cliId=client7
+V.l_e_cliId=client7
+V.l_e_code=000000
+V.l_f_cliId=client7
+V.l_f_code=000000
+V.l_ip=127.0.0.1
+V.l_op=/Clients
+V.l_port=8888
+V.l_pre=/2014-06-30/Accounts
+V.l_pro=http
+V.l_sid=sid4
+V.l_token=TOKEN6
+V.s_Case=参数均正确，应成功
+V.s_CaseId=1
+V.s_CasePath=Exam.Intf-1.1
+V.s_Item=
+V.s_ItemId=1
+V.s_ItemPath=Exam.Intf-1
+V.s_Keyx=Rest2_GetCliById
+V.s_ModuleId=Exam.Intf
+V.s_Pri=0
+V.s_Step=Exam.Intf-1.1.1&gt; 查询cliId
+V.s_Sw=y
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s_n0=_data
+V.s_n1=_token
+V.s_n2=_e_code
+V.s_n3=_e_cliId
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=&amp;cliId=${DB.Rest_CliId}
+V.s_v1=${DB.Rest_Token}
+V.s_v2=${__eval(000000)}
+V.s_v3=${DB.Rest_CliId}
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">@Case</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208707</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-1.2) token无效，应失败</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208727</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1805</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+=0
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@2aead945
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._data=&amp;cliId=${DB.Rest_CliId}
+V._e_cliId=${DB.G_NULL}
+V._e_code=C999999
+V._token=${DB.Rest_Token}xxx
+V.s_Case=token无效，应失败
+V.s_CaseId=2
+V.s_CasePath=Exam.Intf-1.2
+V.s_Item=
+V.s_ItemId=1
+V.s_ItemPath=Exam.Intf-1
+V.s_Keyx=Rest2_GetCliById
+V.s_ModuleId=Exam.Intf
+V.s_Pri=3
+V.s_Step=Exam.Intf-1.1.1&gt; 查询cliId
+V.s_Sw=y
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-1.1) Rest2_GetCliById
+    //skipMsg:
+
+    //sucMsg:
+    code: (fact=000000)  ==  (expe=000000);
+    cliId: (fact=client7)  ==  (expe=client7);
+V.s_n0=_data
+V.s_n1=_token
+V.s_n2=_e_code
+V.s_n3=_e_cliId
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=&amp;cliId=${DB.Rest_CliId}
+V.s_v1=${DB.Rest_Token}xxx
+V.s_v2=C999999
+V.s_v3=${DB.G_NULL}
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">Exam.Intf-1.2.1&gt; 查询cliId;# Rest2_GetCliById.rest_get</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208737</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">4 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">3 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">3179</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">AutoChkClean</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">
+    code: (fact=999999)  ==  (expe=C999999);
+
+    //sucMsg:
+    cliId: (fact=`G_NULL`)  ==  (expe=`G_NULL`);</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data">GET http://127.0.0.1:8888/2014-06-30/Accounts/sid4/Clients?token=TOKEN6xxx&amp;cliId=client7</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Host: 127.0.0.1:8888
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_121)
+</pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 200 OK
+Content-Type: text/plain
+Date: Tue, 31 Mar 2015 12:54:48 GMT
+Server: WSGIServer 0.2
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">{"resp":{"respCode":"999999", "respMsg":"{token}={TOKEN6xxx}"}}</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data">SamplerProperties:
+HTTPSampler.DO_MULTIPART_POST=false
+HTTPSampler.auto_redirects=false
+HTTPSampler.connect_timeout=
+HTTPSampler.contentEncoding=
+HTTPSampler.domain=127.0.0.1
+HTTPSampler.embedded_url_re=
+HTTPSampler.follow_redirects=true
+HTTPSampler.method=GET
+HTTPSampler.monitor=false
+HTTPSampler.path=/2014-06-30/Accounts/sid4/Clients?token=TOKEN6xxx&amp;cliId=client7
+HTTPSampler.port=8888
+HTTPSampler.protocol=http
+HTTPSampler.response_timeout=
+HTTPSampler.use_keepalive=true
+HTTPsampler.Arguments=
+TestElement.enabled=true
+TestElement.gui_class=org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui
+TestElement.name=Exam.Intf-1.2.1&gt; 查询cliId;# Rest2_GetCliById.rest_get
+TestElement.test_class=org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy
+
+JMeterVariables:
+=0
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@7e7fc585
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._data=&amp;cliId=${DB.Rest_CliId}
+V._e_cliId=${DB.G_NULL}
+V._e_code=C999999
+V._token=${DB.Rest_Token}xxx
+V.l_CHK=code, cliId
+V.l_DFT_e_code=000000
+V.l_DFT_ip=127.0.0.1
+V.l_DFT_port=8888
+V.l_DFT_pre=/2014-06-30/Accounts
+V.l_DFT_pro=http
+V.l_DFT_sid=sid4
+V.l_DFT_token=TOKEN6
+V.l_FACTMUST=`G_FALSE`
+V.l_MUST_dv=data, op, pre
+V.l_data=&amp;cliId=client7
+V.l_e_cliId=`G_NULL`
+V.l_e_code=C999999
+V.l_f_cliId=`G_NULL`
+V.l_f_code=999999
+V.l_ip=127.0.0.1
+V.l_op=/Clients
+V.l_port=8888
+V.l_pre=/2014-06-30/Accounts
+V.l_pro=http
+V.l_sid=sid4
+V.l_token=TOKEN6xxx
+V.s_Case=token无效，应失败
+V.s_CaseId=2
+V.s_CasePath=Exam.Intf-1.2
+V.s_Item=
+V.s_ItemId=1
+V.s_ItemPath=Exam.Intf-1
+V.s_Keyx=Rest2_GetCliById
+V.s_ModuleId=Exam.Intf
+V.s_Pri=3
+V.s_Step=Exam.Intf-1.2.1&gt; 查询cliId
+V.s_Sw=y
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-1.1) Rest2_GetCliById
+    //skipMsg:
+
+    //sucMsg:
+    code: (fact=000000)  ==  (expe=000000);
+    cliId: (fact=client7)  ==  (expe=client7);
+V.s_n0=_data
+V.s_n1=_token
+V.s_n2=_e_code
+V.s_n3=_e_cliId
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=&amp;cliId=${DB.Rest_CliId}
+V.s_v1=${DB.Rest_Token}xxx
+V.s_v2=C999999
+V.s_v3=${DB.G_NULL}
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">@Case</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208797</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-1.3) 无效的cliId，应失败</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208828</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1811</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+=0
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@2aead945
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._data=&amp;cliId=${DB.Rest_CliId}xxx
+V._e_cliId=${DB.G_NULL}
+V._e_code=999999
+V._token=${DB.Rest_Token}
+V.s_Case=无效的cliId，应失败
+V.s_CaseId=3
+V.s_CasePath=Exam.Intf-1.3
+V.s_Item=END
+V.s_ItemId=1
+V.s_ItemPath=Exam.Intf-1
+V.s_Keyx=Rest2_GetCliById
+V.s_ModuleId=Exam.Intf
+V.s_Pri=3
+V.s_Step=Exam.Intf-1.2.1&gt; 查询cliId
+V.s_Sw=y
+V.s__itemEndFlag=1
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-1.2) Rest2_GetCliById
+    //failMsg:
+    code: (fact=999999)  ==  (expe=C999999);
+
+    //sucMsg:
+    cliId: (fact=`G_NULL`)  ==  (expe=`G_NULL`);
+V.s_n0=_data
+V.s_n1=_token
+V.s_n2=_e_code
+V.s_n3=_e_cliId
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=&amp;cliId=${DB.Rest_CliId}xxx
+V.s_v1=${DB.Rest_Token}
+V.s_v2=999999
+V.s_v3=${DB.G_NULL}
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-1.3.1&gt; 查询cliId;# Rest2_GetCliById.rest_get</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208843</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">7 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">6 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">3185</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class=""><tr><td colspan="3" class="data assertion">AutoChkClean</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">
+
+    //sucMsg:
+    code: (fact=999999)  ==  (expe=999999);
+    cliId: (fact=`G_NULL`)  ==  (expe=`G_NULL`);</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data">GET http://127.0.0.1:8888/2014-06-30/Accounts/sid4/Clients?token=TOKEN6&amp;cliId=client7xxx</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Host: 127.0.0.1:8888
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_121)
+</pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 200 OK
+Content-Type: text/plain
+Date: Tue, 31 Mar 2015 12:54:48 GMT
+Server: WSGIServer 0.2
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">{"resp":{"respCode":"999999", "respMsg":"{cliId}={client7xxx}"}}</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data">SamplerProperties:
+HTTPSampler.DO_MULTIPART_POST=false
+HTTPSampler.auto_redirects=false
+HTTPSampler.connect_timeout=
+HTTPSampler.contentEncoding=
+HTTPSampler.domain=127.0.0.1
+HTTPSampler.embedded_url_re=
+HTTPSampler.follow_redirects=true
+HTTPSampler.method=GET
+HTTPSampler.monitor=false
+HTTPSampler.path=/2014-06-30/Accounts/sid4/Clients?token=TOKEN6&amp;cliId=client7xxx
+HTTPSampler.port=8888
+HTTPSampler.protocol=http
+HTTPSampler.response_timeout=
+HTTPSampler.use_keepalive=true
+HTTPsampler.Arguments=
+TestElement.enabled=true
+TestElement.gui_class=org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui
+TestElement.name=Exam.Intf-1.3.1&gt; 查询cliId;# Rest2_GetCliById.rest_get
+TestElement.test_class=org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy
+
+JMeterVariables:
+=0
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@7e7fc585
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._data=&amp;cliId=${DB.Rest_CliId}xxx
+V._e_cliId=${DB.G_NULL}
+V._e_code=999999
+V._token=${DB.Rest_Token}
+V.l_CHK=code, cliId
+V.l_DFT_e_code=000000
+V.l_DFT_ip=127.0.0.1
+V.l_DFT_port=8888
+V.l_DFT_pre=/2014-06-30/Accounts
+V.l_DFT_pro=http
+V.l_DFT_sid=sid4
+V.l_DFT_token=TOKEN6
+V.l_FACTMUST=`G_FALSE`
+V.l_MUST_dv=data, op, pre
+V.l_data=&amp;cliId=client7xxx
+V.l_e_cliId=`G_NULL`
+V.l_e_code=999999
+V.l_f_cliId=`G_NULL`
+V.l_f_code=999999
+V.l_ip=127.0.0.1
+V.l_op=/Clients
+V.l_port=8888
+V.l_pre=/2014-06-30/Accounts
+V.l_pro=http
+V.l_sid=sid4
+V.l_token=TOKEN6
+V.s_Case=无效的cliId，应失败
+V.s_CaseId=3
+V.s_CasePath=Exam.Intf-1.3
+V.s_Item=END
+V.s_ItemId=1
+V.s_ItemPath=Exam.Intf-1
+V.s_Keyx=Rest2_GetCliById
+V.s_ModuleId=Exam.Intf
+V.s_Pri=3
+V.s_Step=Exam.Intf-1.3.1&gt; 查询cliId
+V.s_Sw=y
+V.s__itemEndFlag=1
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-1.2) Rest2_GetCliById
+    //failMsg:
+    code: (fact=999999)  ==  (expe=C999999);
+
+    //sucMsg:
+    cliId: (fact=`G_NULL`)  ==  (expe=`G_NULL`);
+V.s_n0=_data
+V.s_n1=_token
+V.s_n2=_e_code
+V.s_n3=_e_cliId
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=&amp;cliId=${DB.Rest_CliId}xxx
+V.s_v1=${DB.Rest_Token}
+V.s_v2=999999
+V.s_v3=${DB.G_NULL}
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr></table></div><div class="trail"></div></div></li></div><li onclick="show(this,'tiSw')" name="TestItem" class="success">Exam.Intf.2] 开发者账号信息查询</li><div style="display:none" name="tiSw"><li onclick="return onclick_li(this);"><div class="success">Exam.Intf.2] 开发者账号信息查询</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208874</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">1 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1748</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+=0
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@2234fc40
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._data=&amp;cliId=${DB.Rest_CliId}xxx
+V._e_cliId=${DB.G_NULL}
+V._e_code=999999
+V._token=${DB.Rest_Token}
+V.s_Case=
+V.s_CaseId=
+V.s_CasePath=Exam.Intf-1.3
+V.s_Item=2] 开发者账号信息查询
+V.s_ItemId=2
+V.s_ItemPath=Exam.Intf-2
+V.s_Keyx=Rest2_GetCliById
+V.s_ModuleId=Exam.Intf
+V.s_Pri=99
+V.s_Step=Exam.Intf-1.3.1&gt; 查询cliId
+V.s_Sw=
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-1.3) Rest2_GetCliById
+    //skipMsg:
+
+    //sucMsg:
+    code: (fact=999999)  ==  (expe=999999);
+    cliId: (fact=`G_NULL`)  ==  (expe=`G_NULL`);
+V.s_n0=_token
+V.s_n1=_e_code
+V.s_n2=
+V.s_n3=
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=_token
+V.s_v1=_e_code
+V.s_v2=
+V.s_v3=
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">@Case</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208911</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-2.1) 参数均正确，应成功</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208931</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1722</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+=1
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@2aead945
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.=
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._e_code=${__eval(000000)}
+V._token=${DB.Rest_Token}
+V.s_Case=参数均正确，应成功
+V.s_CaseId=1
+V.s_CasePath=Exam.Intf-2.1
+V.s_Item=
+V.s_ItemId=2
+V.s_ItemPath=Exam.Intf-2
+V.s_Keyx=Rest2_GetCliById
+V.s_ModuleId=Exam.Intf
+V.s_Pri=0
+V.s_Step=Exam.Intf-1.3.1&gt; 查询cliId
+V.s_Sw=y
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-1.3) Rest2_GetCliById
+    //skipMsg:
+
+    //sucMsg:
+    code: (fact=999999)  ==  (expe=999999);
+    cliId: (fact=`G_NULL`)  ==  (expe=`G_NULL`);
+V.s_n0=_token
+V.s_n1=_e_code
+V.s_n2=
+V.s_n3=
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=${DB.Rest_Token}
+V.s_v1=${__eval(000000)}
+V.s_v2=
+V.s_v3=
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-2.1.1&gt; 查询sid;# Rest2_GetSrv.rest_get</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028208951</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">9 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">7 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">5899</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class=""><tr><td colspan="3" class="data assertion">AutoChkClean</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">
+
+    //sucMsg:
+    code: (fact=000000)  ==  (expe=000000);
+    sid: (fact=sid4)  !=  (expe=`G_NULL`);</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data">GET http://127.0.0.1:8888/2014-06-30/Accounts/sid4?token=TOKEN6</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Host: 127.0.0.1:8888
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_121)
+</pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 200 OK
+Content-Type: text/plain
+Date: Tue, 31 Mar 2015 12:54:48 GMT
+Server: WSGIServer 0.2
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">{"resp":{"respCode":"000000","account":{"accountSid":"sid4","nickName":"nickName"}}}</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data">SamplerProperties:
+HTTPSampler.DO_MULTIPART_POST=false
+HTTPSampler.auto_redirects=false
+HTTPSampler.connect_timeout=
+HTTPSampler.contentEncoding=
+HTTPSampler.domain=127.0.0.1
+HTTPSampler.embedded_url_re=
+HTTPSampler.follow_redirects=true
+HTTPSampler.method=GET
+HTTPSampler.monitor=false
+HTTPSampler.path=/2014-06-30/Accounts/sid4?token=TOKEN6
+HTTPSampler.port=8888
+HTTPSampler.protocol=http
+HTTPSampler.response_timeout=
+HTTPSampler.use_keepalive=true
+HTTPsampler.Arguments=
+TestElement.enabled=true
+TestElement.gui_class=org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui
+TestElement.name=Exam.Intf-2.1.1&gt; 查询sid;# Rest2_GetSrv.rest_get
+TestElement.test_class=org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy
+
+JMeterVariables:
+=1
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@7f3ff156
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.=
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._e_code=${__eval(000000)}
+V._token=${DB.Rest_Token}
+V.l_CHK=code, sid
+V.l_DFT_e_code=000000
+V.l_DFT_ip=127.0.0.1
+V.l_DFT_port=8888
+V.l_DFT_pre=/2014-06-30/Accounts
+V.l_DFT_pro=http
+V.l_DFT_sid=sid4
+V.l_DFT_token=TOKEN6
+V.l_FACTMUST=`G_FALSE`
+V.l_MUST=e_code
+V.l_MUST_dv=data, op, pre
+V.l_data=
+V.l_e_code=000000
+V.l_en_sid=`G_NULL`
+V.l_ip=127.0.0.1
+V.l_op=
+V.l_port=8888
+V.l_pre=/2014-06-30/Accounts
+V.l_pro=http
+V.l_sid=sid4
+V.l_token=TOKEN6
+V.s_Case=参数均正确，应成功
+V.s_CaseId=1
+V.s_CasePath=Exam.Intf-2.1
+V.s_Item=
+V.s_ItemId=2
+V.s_ItemPath=Exam.Intf-2
+V.s_Keyx=Rest2_GetSrv
+V.s_ModuleId=Exam.Intf
+V.s_Pri=0
+V.s_Step=Exam.Intf-2.1.1&gt; 查询sid
+V.s_Sw=y
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-1.3) Rest2_GetCliById
+    //skipMsg:
+
+    //sucMsg:
+    code: (fact=999999)  ==  (expe=999999);
+    cliId: (fact=`G_NULL`)  ==  (expe=`G_NULL`);
+V.s_n0=_token
+V.s_n1=_e_code
+V.s_n2=
+V.s_n3=
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=${DB.Rest_Token}
+V.s_v1=${__eval(000000)}
+V.s_v2=
+V.s_v3=
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">@Case</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028209003</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-2.2) token无效，应失败</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028209019</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1692</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+=1
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@2aead945
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.=
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._e_code=999999
+V._token=${DB.Rest_Token}xxx
+V.s_Case=token无效，应失败
+V.s_CaseId=2
+V.s_CasePath=Exam.Intf-2.2
+V.s_Item=END
+V.s_ItemId=2
+V.s_ItemPath=Exam.Intf-2
+V.s_Keyx=Rest2_GetSrv
+V.s_ModuleId=Exam.Intf
+V.s_Pri=3
+V.s_Step=Exam.Intf-2.1.1&gt; 查询sid
+V.s_Sw=y
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-2.1) Rest2_GetSrv
+    //skipMsg:
+
+    //sucMsg:
+    code: (fact=000000)  ==  (expe=000000);
+    sid: (fact=sid4)  !=  (expe=`G_NULL`);
+V.s_n0=_token
+V.s_n1=_e_code
+V.s_n2=
+V.s_n3=
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=${DB.Rest_Token}xxx
+V.s_v1=999999
+V.s_v2=
+V.s_v3=
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-2.2.1&gt; 查询sid;# Rest2_GetSrv.rest_get</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028209033</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">6 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">5 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">5842</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class=""><tr><td colspan="3" class="data assertion">AutoChkClean</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">
+
+    //sucMsg:
+    code: (fact=999999)  ==  (expe=999999);
+    sid: (fact=`G_NULL`)  ==  (expe=`G_NULL`);</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data">GET http://127.0.0.1:8888/2014-06-30/Accounts/sid4?token=TOKEN6xxx</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Host: 127.0.0.1:8888
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_121)
+</pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 200 OK
+Content-Type: text/plain
+Date: Tue, 31 Mar 2015 12:54:48 GMT
+Server: WSGIServer 0.2
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">{"resp":{"respCode":"999999", "respMsg":"{token}={TOKEN6xxx}"}}</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data">SamplerProperties:
+HTTPSampler.DO_MULTIPART_POST=false
+HTTPSampler.auto_redirects=false
+HTTPSampler.connect_timeout=
+HTTPSampler.contentEncoding=
+HTTPSampler.domain=127.0.0.1
+HTTPSampler.embedded_url_re=
+HTTPSampler.follow_redirects=true
+HTTPSampler.method=GET
+HTTPSampler.monitor=false
+HTTPSampler.path=/2014-06-30/Accounts/sid4?token=TOKEN6xxx
+HTTPSampler.port=8888
+HTTPSampler.protocol=http
+HTTPSampler.response_timeout=
+HTTPSampler.use_keepalive=true
+HTTPsampler.Arguments=
+TestElement.enabled=true
+TestElement.gui_class=org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui
+TestElement.name=Exam.Intf-2.2.1&gt; 查询sid;# Rest2_GetSrv.rest_get
+TestElement.test_class=org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy
+
+JMeterVariables:
+=1
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@b5b98a3
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.=
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._e_code=999999
+V._token=${DB.Rest_Token}xxx
+V.l_CHK=code, sid
+V.l_DFT_e_code=000000
+V.l_DFT_ip=127.0.0.1
+V.l_DFT_port=8888
+V.l_DFT_pre=/2014-06-30/Accounts
+V.l_DFT_pro=http
+V.l_DFT_sid=sid4
+V.l_DFT_token=TOKEN6
+V.l_FACTMUST=`G_FALSE`
+V.l_MUST=e_code
+V.l_MUST_dv=data, op, pre
+V.l_data=
+V.l_e_code=999999
+V.l_e_sid=`G_NULL`
+V.l_ip=127.0.0.1
+V.l_op=
+V.l_port=8888
+V.l_pre=/2014-06-30/Accounts
+V.l_pro=http
+V.l_sid=sid4
+V.l_token=TOKEN6xxx
+V.s_Case=token无效，应失败
+V.s_CaseId=2
+V.s_CasePath=Exam.Intf-2.2
+V.s_Item=END
+V.s_ItemId=2
+V.s_ItemPath=Exam.Intf-2
+V.s_Keyx=Rest2_GetSrv
+V.s_ModuleId=Exam.Intf
+V.s_Pri=3
+V.s_Step=Exam.Intf-2.2.1&gt; 查询sid
+V.s_Sw=y
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-2.1) Rest2_GetSrv
+    //skipMsg:
+
+    //sucMsg:
+    code: (fact=000000)  ==  (expe=000000);
+    sid: (fact=sid4)  !=  (expe=`G_NULL`);
+V.s_n0=_token
+V.s_n1=_e_code
+V.s_n2=
+V.s_n3=
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=${DB.Rest_Token}xxx
+V.s_v1=999999
+V.s_v2=
+V.s_v3=
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr></table></div><div class="trail"></div></div></li></div><li onclick="show(this,'tiSw')" name="TestItem" class="success">Exam.Intf-C]</li><div style="display:none" name="tiSw"><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-C]</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028209075</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1770</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+=-1
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@1afd6697
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.=
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._e_code=999999
+V._token=${DB.Rest_Token}xxx
+V.s_Case=&lt;EOF&gt;
+V.s_CaseId=CC
+V.s_CasePath=Exam.Intf-C.CC
+V.s_Item=&lt;EOF&gt;
+V.s_ItemId=C
+V.s_ItemPath=Exam.Intf-C
+V.s_Keyx=Rest2_GetSrv
+V.s_ModuleId=Exam.Intf
+V.s_Pri=&lt;EOF&gt;
+V.s_Step=Exam.Intf-2.2.1&gt; 查询sid
+V.s_Sw=&lt;EOF&gt;
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-2.2) Rest2_GetSrv
+    //skipMsg:
+
+    //sucMsg:
+    code: (fact=999999)  ==  (expe=999999);
+    sid: (fact=`G_NULL`)  ==  (expe=`G_NULL`);
+V.s_n0=_token
+V.s_n1=_e_code
+V.s_n2=
+V.s_n3=
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=&lt;EOF&gt;
+V.s_v1=&lt;EOF&gt;
+V.s_v2=&lt;EOF&gt;
+V.s_v3=&lt;EOF&gt;
+V.s_v4=&lt;EOF&gt;
+V.s_v5=&lt;EOF&gt;
+V.s_v6=&lt;EOF&gt;
+V.s_v7=&lt;EOF&gt;
+V.s_v8=&lt;EOF&gt;
+V.s_v9=&lt;EOF&gt;
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="success">Exam.Intf-C.CC) 1&gt; Module_Teardown1</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">Exam.Intf-- 用例数据驱动 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1491028209077</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1781</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">200</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">OK</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Sampler Datas</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">JMeterVariables:
+=-1
+DB.C_Fail=999999
+DB.C_Suc=000000
+DB.G_DEFAULT=`G_DEFAULT`
+DB.G_FALSE=`G_FALSE`
+DB.G_JPNullArr=[]
+DB.G_NULL=`G_NULL`
+DB.G_SKIP=0.010120123
+DB.G_TRUE=`G_TRUE`
+DB.G_Undef=0.010120123
+DB.Rest_CliId=client7
+DB.Rest_Ip=127.0.0.1
+DB.Rest_Ip2=113.31.89.144
+DB.Rest_Port=8888
+DB.Rest_Port2=443
+DB.Rest_Pro=http
+DB.Rest_Pro2=https
+DB.Rest_Sid=sid4
+DB.Rest_Token=TOKEN6
+DB.acti0_Appid=232c6c90f114488bb0f1811cfad07a4c
+DB.acti0_SId=af4767a00ac89fb3957a03ff712b87d4
+DB.acti0_Token=b6ba992d246646f58ecdcecc8920f9f4
+INI.Test_DbPost=_Ts
+INI.Test_Pri=&lt;4
+INI.__IfCase="${V.s__itemSw}"!="n" &amp;&amp; "${V.s_Sw}"!="n" &amp;&amp; parseInt("${V.s_Pri}") ${INI.Test_Pri} &amp;&amp; parseInt("${V.s_Pri}")&lt;20
+JMeterThread.last_sample_ok=true
+JMeterThread.pack=org.apache.jmeter.threads.SamplePackage@2f085278
+START.HMS=143006
+START.MS=1491028206509
+START.YMD=20170401
+TESTSTART.MS=1491028207003
+V.=
+V.${V.s_v4}=null
+V.${V.s_v5}=null
+V.${V.s_v6}=null
+V.${V.s_v7}=null
+V.${V.s_v8}=null
+V.${V.s_v9}=null
+V._e_code=999999
+V._token=${DB.Rest_Token}xxx
+V.s_Case=&lt;EOF&gt;
+V.s_CaseId=CC
+V.s_CasePath=Exam.Intf-C.CC
+V.s_Item=&lt;EOF&gt;
+V.s_ItemId=C
+V.s_ItemPath=Exam.Intf-C
+V.s_Keyx=Rest2_GetSrv
+V.s_ModuleId=Exam.Intf
+V.s_Pri=&lt;EOF&gt;
+V.s_Step=Exam.Intf-C.CC) 1&gt; Module_Teardown1
+V.s_Sw=&lt;EOF&gt;
+V.s__itemEndFlag=0
+V.s__itemSw=
+V.s__lastChkLog=    //Exam.Intf-2.2) Rest2_GetSrv
+    //skipMsg:
+
+    //sucMsg:
+    code: (fact=999999)  ==  (expe=999999);
+    sid: (fact=`G_NULL`)  ==  (expe=`G_NULL`);
+V.s_n0=_token
+V.s_n1=_e_code
+V.s_n2=
+V.s_n3=
+V.s_n4=${V.s_v4}
+V.s_n5=${V.s_v5}
+V.s_n6=${V.s_v6}
+V.s_n7=${V.s_v7}
+V.s_n8=${V.s_v8}
+V.s_n9=${V.s_v9}
+V.s_v0=&lt;EOF&gt;
+V.s_v1=&lt;EOF&gt;
+V.s_v2=&lt;EOF&gt;
+V.s_v3=&lt;EOF&gt;
+V.s_v4=&lt;EOF&gt;
+V.s_v5=&lt;EOF&gt;
+V.s_v6=&lt;EOF&gt;
+V.s_v7=&lt;EOF&gt;
+V.s_v8=&lt;EOF&gt;
+V.s_v9=&lt;EOF&gt;
+__jmeter.USER_TOKEN__=Exam.Intf-- 用例数据驱动 1-1
+
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">SubSampler</div><div class="zebra"><table><tr><td class="data key">SubSampler RespData</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li></div></div></div><div id="right-panel"></div></body></html>

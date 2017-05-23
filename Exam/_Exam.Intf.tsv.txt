@@ -1,0 +1,7 @@
+1	1] Client信息查询（Client号码）	x			99	_data	_token	_e_code	_e_cliId
+1		1	参数均正确，应成功	y	0	&cliId=${DB.Rest_CliId}	${DB.Rest_Token}	${__eval(000000)}	${DB.Rest_CliId}
+1		2	token无效，应失败	y	3	&cliId=${DB.Rest_CliId}	${DB.Rest_Token}xxx	C999999	${DB.G_NULL}
+1	END	3	无效的cliId，应失败	y	3	&cliId=${DB.Rest_CliId}xxx	${DB.Rest_Token}	999999	${DB.G_NULL}
+2	2] 开发者账号信息查询				99	_token	_e_code		
+2		1	参数均正确，应成功	y	0	${DB.Rest_Token}	${__eval(000000)}		
+2	END	2	token无效，应失败	y	3	${DB.Rest_Token}xxx	999999		

@@ -1,0 +1,9 @@
+__Name__~__Value__~__Description__
+G_NULL~`G_NULL`~# 函数常量：默认值，匹配不上时的默认空值
+G_Undef~0.010120123~# 函数常量：模拟JS中的未定义值，当为数值或字符串时，都视为未定义
+G_SKIP~0.010120123~# 函数常量：跳过检查项。//与G_Undef的值一致，使它也能表示跳过检查的意思
+G_DEFAULT~`G_DEFAULT`~# 函数常量：当某变量的值为它时，替换为定义的默认值
+G_TRUE~`G_TRUE`~# 函数常量：true
+G_FALSE~`G_FALSE`~# 函数常量：false
+G_JPNullArr~[]~# 函数常量：代表JsonPath空数组，未解决期间=G_NULL，解决过后=[] #值=[]时，{Assert}正常、但{Extractor}时异常
+

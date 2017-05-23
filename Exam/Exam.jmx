@@ -1,0 +1,2252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.9" jmeter="3.0 r1743807">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="TestProj" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="#  冒烟接口自动化规范  (开发&amp;手工测试易推广、关键字主逻辑可视化易评审)" enabled="false">
+        <stringProp name="TestPlan.comments">适用于与ATOP类似的一套功能自动化规范(区别在于JMeter用于微型的冒烟接口、java为主，ATOP用于大型的完整功能、python为主)</stringProp>
+        <boolProp name="resetInterpreter">false</boolProp>
+        <stringProp name="parameters"></stringProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="script">/* 
+ *  1) 自定义函数复用：用{TestFragment}实现，传参_调用={Parameterized Controller}+{模块控制器}
+ *     注意点：{TestFragment}中必须要有{Sampler}
+ *     命名：*驼峰_*驼峰  其中&quot;小写*_小写*&quot;=dv底层驱动  &quot;大写*_小写*&quot;=K层非关键字  &quot;大写*_大写*&quot;=K层关键字
+ *  2) 变量命名规范
+ *  	变量类型		作用域		JMeter		JMeter常用程度
+	用户参数常量	全平台一致		INI.*		高
+	测试环境常量	环境内一致		DB.*			高
+	测试模块变量	TestModule	V.m_*		低
+	测试项变量		TestItem		V.i_*		低
+	数据源变量		TestCase		V._小写*		高
+	关键字变量		Keyx间		V.k_*		中
+	局部变量		Keyx内		V.l_*	     中
+	函数变量       底层片段        v.函数名.*      中
+*/
+</stringProp>
+      </BeanShellPreProcessor>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Demo0--用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="DB.Rest_Sid" elementType="Argument">
+            <stringProp name="Argument.name">DB.Rest_Sid</stringProp>
+            <stringProp name="Argument.value">sid4</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DB.Rest_Token" elementType="Argument">
+            <stringProp name="Argument.name">DB.Rest_Token</stringProp>
+            <stringProp name="Argument.value">TOKEN6</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DB.Rest_CliId" elementType="Argument">
+            <stringProp name="Argument.name">DB.Rest_CliId</stringProp>
+            <stringProp name="Argument.value">client7</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DB.Rest_Ip" elementType="Argument">
+            <stringProp name="Argument.name">DB.Rest_Ip</stringProp>
+            <stringProp name="Argument.value">127.0.0.1</stringProp>
+            <stringProp name="Argument.desc">rest地址</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DB.Rest_Port" elementType="Argument">
+            <stringProp name="Argument.name">DB.Rest_Port</stringProp>
+            <stringProp name="Argument.value">8888</stringProp>
+            <stringProp name="Argument.desc">rest端口号</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DB.Rest_Pro" elementType="Argument">
+            <stringProp name="Argument.name">DB.Rest_Pro</stringProp>
+            <stringProp name="Argument.value">http</stringProp>
+            <stringProp name="Argument.desc">rest协议</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DB.Rest_Ip2" elementType="Argument">
+            <stringProp name="Argument.name">DB.Rest_Ip2</stringProp>
+            <stringProp name="Argument.value">113.31.89.144</stringProp>
+            <stringProp name="Argument.desc">rest地址</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DB.Rest_Port2" elementType="Argument">
+            <stringProp name="Argument.name">DB.Rest_Port2</stringProp>
+            <stringProp name="Argument.value">443</stringProp>
+            <stringProp name="Argument.desc">rest端口号</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DB.Rest_Pro2" elementType="Argument">
+            <stringProp name="Argument.name">DB.Rest_Pro2</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
+            <stringProp name="Argument.desc">rest协议</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="0] INI常量" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="INI.Test_Pri" elementType="Argument">
+            <stringProp name="Argument.name">INI.Test_Pri</stringProp>
+            <stringProp name="Argument.value">${__P(_INI_Test_Pri, &lt;4)}</stringProp>
+            <stringProp name="Argument.desc">${__P(_INI_Test_Pri, &lt;4)} (CasePri Test_Pri)的才执行  0=顶  1=高 2=中 3=低  99=不执行  bug(11=致命/12=严重/13=一般/14=提示)</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="INI.Test_DbPost" elementType="Argument">
+            <stringProp name="Argument.name">INI.Test_DbPost</stringProp>
+            <stringProp name="Argument.value">${__P(_INI_Test_DbPost, _Ts)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="INI.__IfCase" elementType="Argument">
+            <stringProp name="Argument.name">INI.__IfCase</stringProp>
+            <stringProp name="Argument.value">&quot;${V.s__itemSw}&quot;!=&quot;n&quot; &amp;&amp; &quot;${V.s_Sw}&quot;!=&quot;n&quot; &amp;&amp; parseInt(&quot;${V.s_Pri}&quot;) ${INI.Test_Pri} &amp;&amp; parseInt(&quot;${V.s_Pri}&quot;)&lt;20</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <kg.apc.jmeter.config.VariablesFromCSV guiclass="kg.apc.jmeter.config.VariablesFromCSVGui" testclass="kg.apc.jmeter.config.VariablesFromCSV" testname="0] 加载DB常量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+        <stringProp name="filename">test\Exam\dbRest${INI.Test_DbPost}.txt</stringProp>
+        <stringProp name="variablesPrefix">DB.</stringProp>
+        <stringProp name="delimiter">~</stringProp>
+        <intProp name="skipLines">1</intProp>
+        <boolProp name="storeSysProp">false</boolProp>
+      </kg.apc.jmeter.config.VariablesFromCSV>
+      <hashTree/>
+      <kg.apc.jmeter.config.VariablesFromCSV guiclass="kg.apc.jmeter.config.VariablesFromCSVGui" testclass="kg.apc.jmeter.config.VariablesFromCSV" testname="0] 加载公用DB" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+        <stringProp name="filename">test\FuncLib\dbCOMM.txt</stringProp>
+        <stringProp name="variablesPrefix">DB.</stringProp>
+        <stringProp name="delimiter">~</stringProp>
+        <intProp name="skipLines">1</intProp>
+        <boolProp name="storeSysProp">false</boolProp>
+      </kg.apc.jmeter.config.VariablesFromCSV>
+      <hashTree/>
+      <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="函数库" enabled="true"/>
+      <hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="ct.RunNg框架函数" enabled="true"/>
+        <hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="各测试项开始" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If 非END、非空时，初始化、并获取V.s__itemSw(=&quot;n&quot;时不执行)" enabled="true">
+              <stringProp name="IfController.condition">&quot;${V.s_ItemId}&quot;!=&quot;&lt;EOF&gt;&quot; &amp;&amp; &quot;${V.s_ItemId}&quot;!=&quot;&quot; &amp;&amp; &quot;${V.s_Item}&quot;!=&quot;&quot; &amp;&amp; &quot;${V.s_Item}&quot;!=&quot;END&quot;</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+            </IfController>
+            <hashTree>
+              <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="jp@gc - Para" enabled="true">
+                <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="V.s_ItemPath" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_ItemPath</stringProp>
+                      <stringProp name="Argument.value">${V.s_ModuleId}-${V.s_ItemId}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <stringProp name="Argument.desc">like &quot;Msg.base-3&quot;</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n0" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n0</stringProp>
+                      <stringProp name="Argument.value">${V.s_v0}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n1" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n1</stringProp>
+                      <stringProp name="Argument.value">${V.s_v1}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n2" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n2</stringProp>
+                      <stringProp name="Argument.value">${V.s_v2}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n3" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n3</stringProp>
+                      <stringProp name="Argument.value">${V.s_v3}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n4" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n4</stringProp>
+                      <stringProp name="Argument.value">${V.s_v4}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n5" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n5</stringProp>
+                      <stringProp name="Argument.value">${V.s_v5}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n6" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n6</stringProp>
+                      <stringProp name="Argument.value">${V.s_v6}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n7" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n7</stringProp>
+                      <stringProp name="Argument.value">${V.s_v7}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n8" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n8</stringProp>
+                      <stringProp name="Argument.value">${V.s_v8}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s_n9" elementType="Argument">
+                      <stringProp name="Argument.name">V.s_n9</stringProp>
+                      <stringProp name="Argument.value">${V.s_v9}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s__itemEndFlag" elementType="Argument">
+                      <stringProp name="Argument.name">V.s__itemEndFlag</stringProp>
+                      <stringProp name="Argument.value">0</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                    <elementProp name="V.s__itemSw" elementType="Argument">
+                      <stringProp name="Argument.name">V.s__itemSw</stringProp>
+                      <stringProp name="Argument.value">${V.s_Sw}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </kg.apc.jmeter.control.ParameterizedController>
+              <hashTree>
+                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Test Action" enabled="true">
+                  <intProp name="ActionProcessor.action">1</intProp>
+                  <intProp name="ActionProcessor.target">0</intProp>
+                  <stringProp name="ActionProcessor.duration">0</stringProp>
+                </TestAction>
+                <hashTree/>
+              </hashTree>
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If V.s__itemSw !=n" enabled="true">
+                <stringProp name="IfController.condition">&quot;${V.s__itemSw}&quot;!=&quot;n&quot;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="@TI" enabled="true">
+                  <boolProp name="displayJMeterProperties">false</boolProp>
+                  <boolProp name="displayJMeterVariables">false</boolProp>
+                  <boolProp name="displaySystemProperties">false</boolProp>
+                </DebugSampler>
+                <hashTree/>
+                <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${V.s_ModuleId}.${V.s_Item}" enabled="true">
+                  <boolProp name="displayJMeterProperties">false</boolProp>
+                  <boolProp name="displayJMeterVariables">true</boolProp>
+                  <boolProp name="displaySystemProperties">false</boolProp>
+                </DebugSampler>
+                <hashTree/>
+              </hashTree>
+            </hashTree>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If END时，置位V.s__itemEndFlag=1" enabled="true">
+              <stringProp name="IfController.condition">&quot;${V.s_Item}&quot;==&quot;END&quot;</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+            </IfController>
+            <hashTree>
+              <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="V.s__itemEndFlag=1" enabled="true">
+                <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="V.s__itemEndFlag" elementType="Argument">
+                      <stringProp name="Argument.name">V.s__itemEndFlag</stringProp>
+                      <stringProp name="Argument.value">1</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </kg.apc.jmeter.control.ParameterizedController>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="各测试用例开始" enabled="true">
+            <stringProp name="IfController.condition">&quot;${V.s_Case}&quot;!=&quot;&quot; &amp;&amp; &quot;${V.s_Sw}&quot;!=&quot;n&quot; &amp;&amp; parseInt(&quot;${V.s_Pri}&quot;) ${INI.Test_Pri} &amp;&amp; parseInt(&quot;${V.s_Pri}&quot;)&lt;20</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="ctRunNg_StartCase" enabled="true">
+              <stringProp name="scriptLanguage">javascript</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename">test\funcLib\ctRunNg_StartCase.js</stringProp>
+              <stringProp name="cacheKey"></stringProp>
+              <stringProp name="script"></stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="@Case" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">false</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${V.s_ItemPath}.${V.s_CaseId}) ${V.s_Case}" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Module_Setup" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_ItemId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_ItemId</stringProp>
+                  <stringProp name="Argument.value">0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.s_ItemPath" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_ItemPath</stringProp>
+                  <stringProp name="Argument.value">${V.s_ModuleId}-0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.s_CaseId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CaseId</stringProp>
+                  <stringProp name="Argument.value">00</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.s_CasePath" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CasePath</stringProp>
+                  <stringProp name="Argument.value">${V.s_ModuleId}-0.00</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <stringProp name="Argument.desc">like &quot;Msg.base-3.0&quot;</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="@TI_Special" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">false</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${V.s_ModuleId}-0]" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Module_Teardown" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_ItemId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_ItemId</stringProp>
+                  <stringProp name="Argument.value">C</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.s_ItemPath" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_ItemPath</stringProp>
+                  <stringProp name="Argument.value">${V.s_ModuleId}-C</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.s_CaseId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CaseId</stringProp>
+                  <stringProp name="Argument.value">CC</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.s_CasePath" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CasePath</stringProp>
+                  <stringProp name="Argument.value">${V.s_ModuleId}-C.CC</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <stringProp name="Argument.desc">like &quot;Msg.base-3.0&quot;</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="@TI_Special" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">false</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${V.s_ModuleId}-C]" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Item_Setup" enabled="false">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_CasePath" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CasePath</stringProp>
+                  <stringProp name="Argument.value">${V.s_ItemId}.0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <stringProp name="Argument.desc">like &quot;3.0&quot;</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="@Case_Special" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">false</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${V.s_ItemPath}.0) Item_Setup" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Item_Teardown" enabled="false">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_CaseId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CaseId</stringProp>
+                  <stringProp name="Argument.value">C</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.s_CasePath" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CasePath</stringProp>
+                  <stringProp name="Argument.value">${V.s_ItemId}.C</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <stringProp name="Argument.desc">like &quot;3.C&quot;</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="@Case_Special" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">false</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${V.s_ItemPath}.C) Item_Teardown" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="AutoClean" enabled="true">
+            <stringProp name="IfController.condition">&apos;${V.l_CHKONCE}&apos;==&apos;${DB.G_FALSE}&apos;</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="&gt;&gt;&gt;&gt;AutoClean() if CHKONCE==FALSE" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="AutoClean" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename">test/funcLib/AutoClean.bsh.java</stringProp>
+              <stringProp name="script"></stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="BizKeywStart" enabled="false">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ArgsDft" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename">test/funcLib/ArgsDft.bsh.java</stringProp>
+              <stringProp name="script"></stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="~~~~ ${V.bk_Id}&gt; ${V.s_BKeyx} ~~~~" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="MustChk" enabled="true">
+              <stringProp name="BeanShellAssertion.query"></stringProp>
+              <stringProp name="BeanShellAssertion.filename">test/funcLib/MustChk.bsh.java</stringProp>
+              <stringProp name="BeanShellAssertion.parameters"></stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="dv.DvRest底层函数" enabled="true"/>
+        <hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="rest_get(**kw)" enabled="true">
+            <stringProp name="TestPlan.comments">rest加密get&lt;json格式&gt;    url=&quot;${pro}://${ip}:${port}/${pre}/${sid}${op}?sig=${V.rest_post_sig}${V.rest_post_para}&quot;</stringProp>
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.l_MUST_dv" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_MUST_dv</stringProp>
+                  <stringProp name="Argument.value">data, op, pre</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <stringProp name="Argument.desc">data不存在或为G_NULL时，根据BAK_data生成。 dv层的必参加_dv后缀、防止覆盖k层的。</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_sid" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_sid</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Sid}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_token" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_token</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Token}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_ip" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_ip</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Ip}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_port" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_port</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Port}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_pro" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_pro</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Pro}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_e_code" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_e_code</stringProp>
+                  <stringProp name="Argument.value">000000</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_pre" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_pre</stringProp>
+                  <stringProp name="Argument.value">/2014-06-30/Accounts</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ArgsDft" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename">test/funcLib/ArgsDft.bsh.java</stringProp>
+              <stringProp name="script"></stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${V.s_Step};# ${V.s_Keyx}.rest_get" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${V.l_ip}</stringProp>
+              <stringProp name="HTTPSampler.port">${V.l_port}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">${V.l_pro}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">${V.l_pre}/${V.l_sid}${V.l_op}?token=${V.l_token}${V.l_data}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="V.l_f_code" enabled="true">
+              <stringProp name="VAR">V.l_f_code</stringProp>
+              <stringProp name="JSONPATH">$.resp.respCode</stringProp>
+              <stringProp name="DEFAULT">${DB.G_NULL}</stringProp>
+              <stringProp name="VARIABLE"></stringProp>
+              <stringProp name="SUBJECT">BODY</stringProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+            <hashTree/>
+            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug rest_post" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySamplerProperties">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="rest_post(**kw)" enabled="true">
+            <stringProp name="TestPlan.comments">rest加密post&lt;json格式&gt;   D结尾的一般为默认值  url=&quot;${pro}://${ip}:${port}/${pre}/${sid}/${op}?sig=${V.l_sig}&quot;</stringProp>
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.l_MUST_dv" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_MUST_dv</stringProp>
+                  <stringProp name="Argument.value">BAK_data, op, pre,</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <stringProp name="Argument.desc">data不存在或为G_NULL时，根据BAK_data生成。 dv层的必参加_dv后缀、防止覆盖k层的。</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_sid" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_sid</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Sid0}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_token" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_token</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Token0}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_port" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_port</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Port}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_ip" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_ip</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Ip}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_pro" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_pro</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Pro}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_e_code" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_e_code</stringProp>
+                  <stringProp name="Argument.value">${DB.C_Suc}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ArgsDft" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename">test/funcLib/ArgsDft.bsh.java</stringProp>
+              <stringProp name="script"></stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="1&gt; MD5、base64加密" enabled="true">
+              <stringProp name="filename">test/funcLib/RestAuthSig.bsh.java</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script"></stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="1&gt; HTTP信息头管理器" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">${V.l_auth}</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JDataDelGSkip" enabled="true">
+              <stringProp name="cacheKey"></stringProp>
+              <stringProp name="filename">test\funcLib\JDataDelGSkip.js</stringProp>
+              <stringProp name="parameters">${__evalVar(V.l_BAK_data)}</stringProp>
+              <stringProp name="script"></stringProp>
+              <stringProp name="scriptLanguage">javascript</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${V.s_Step};# ${V.s_Keyx}.rest_post" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">${V.l_data}&#xd;
+</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${V.l_ip}</stringProp>
+              <stringProp name="HTTPSampler.port">${V.l_port}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">${V.l_pro}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/2014-06-30/Accounts/${V.l_sid}/${V.l_op}?sig=${V.l_sig}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JAutoFact" enabled="true">
+              <stringProp name="TestPlan.comments">尽量少用，仅是为了适配{JSON PathExtractor}元件对[]识别不出来的bug</stringProp>
+              <stringProp name="cacheKey"></stringProp>
+              <stringProp name="filename">test\funcLib\JAutoFact.js</stringProp>
+              <stringProp name="parameters">{&quot;sonPath&quot;:[&quot;resp&quot;], &quot;key&quot;:null}</stringProp>
+              <stringProp name="script"></stringProp>
+              <stringProp name="scriptLanguage">javascript</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="V.l_f_msg" enabled="true">
+              <stringProp name="VAR">V.l_f_msg</stringProp>
+              <stringProp name="JSONPATH">$.resp.respMsg</stringProp>
+              <stringProp name="DEFAULT">${DB.G_NULL}</stringProp>
+              <stringProp name="VARIABLE"></stringProp>
+              <stringProp name="SUBJECT">BODY</stringProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="V.l_f_code" enabled="true">
+              <stringProp name="VAR">V.l_f_code</stringProp>
+              <stringProp name="JSONPATH">$.resp.respCode</stringProp>
+              <stringProp name="DEFAULT">${DB.G_NULL}</stringProp>
+              <stringProp name="VARIABLE"></stringProp>
+              <stringProp name="SUBJECT">BODY</stringProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+            <hashTree/>
+            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug rest_post" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySamplerProperties">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugPostProcessor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="$.resp.respCode" enabled="true">
+              <stringProp name="JSON_PATH">$.resp.respCode</stringProp>
+              <stringProp name="EXPECTED_VALUE"></stringProp>
+              <boolProp name="JSONVALIDATION">false</boolProp>
+              <boolProp name="EXPECT_NULL">false</boolProp>
+              <boolProp name="INVERT">false</boolProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="km.Km2管理类关键字" enabled="true"/>
+        <hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Sys_Random(kName_random)" enabled="true">
+            <stringProp name="TestPlan.comments">op=&quot;switchboard/ivr/del&quot; pre=&quot;2014-06-30/Accounts&quot;  eArgs.ivrList= ([] if eCode==DB.C_Suc else [])</stringProp>
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_Keyx" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_Keyx</stringProp>
+                  <stringProp name="Argument.value">Sys_Random</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT</stringProp>
+                  <stringProp name="Argument.value">k_random</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <stringProp name="Argument.desc">, 分割的默认变量名</stringProp>
+                </elementProp>
+                <elementProp name="V.l_DFT_k_random" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_DFT_k_random</stringProp>
+                  <stringProp name="Argument.value">random</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="参数默认值实现" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters">F, ${V.s_Keyx}</stringProp>
+              <stringProp name="filename">test/funcLib/ArgsDft.bsh.java</stringProp>
+              <stringProp name="script"></stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="${V.s_Step};# ${V.s_Keyx}.Sys_Random" enabled="true">
+              <stringProp name="BeanShellSampler.query">long r1 = System.currentTimeMillis();
+String varName = &quot;V.k_&quot;+vars.get(&quot;V.l_k_random&quot;);
+//int threadNum =  ctx.getThreadNum();
+
+vars.put(varName, r1.toString());
+//log.info(&quot;\n&quot;+ vars.get(&quot;V.s_Step&quot;)+ &quot;: &quot;+ varName+ &quot;=&quot;+ vars.get(varName));</stringProp>
+              <stringProp name="BeanShellSampler.filename"></stringProp>
+              <stringProp name="BeanShellSampler.parameters"></stringProp>
+              <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+            </BeanShellSampler>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="kc.Rest配置关键字" enabled="true"/>
+        <hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Rest2-2014版本" enabled="true"/>
+          <hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Rest2_GetCliById(**kw)" enabled="true">
+              <stringProp name="TestPlan.comments">Client信息查询（Client号码）</stringProp>
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Keyx" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Keyx</stringProp>
+                    <stringProp name="Argument.value">Rest2_GetCliById</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_op" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_op</stringProp>
+                    <stringProp name="Argument.value">/Clients</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_CHK" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_CHK</stringProp>
+                    <stringProp name="Argument.value">code, cliId</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <stringProp name="Argument.desc">,分割的自动检查变量名，仅关键字使用</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_FACTMUST" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_FACTMUST</stringProp>
+                    <stringProp name="Argument.value">${DB.G_FALSE}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="rest_get.__call__()" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="23750841">工作台</stringProp>
+                  <stringProp name="-1082251473">TestProj</stringProp>
+                  <stringProp name="20999648">函数库</stringProp>
+                  <stringProp name="-818998366">dv.DvRest底层函数</stringProp>
+                  <stringProp name="612188160">rest_get(**kw)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+              <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="V.l_f_cliId" enabled="true">
+                <stringProp name="VAR">V.l_f_cliId</stringProp>
+                <stringProp name="JSONPATH">$.resp.client.cliId</stringProp>
+                <stringProp name="DEFAULT">${DB.G_NULL}</stringProp>
+                <stringProp name="VARIABLE"></stringProp>
+                <stringProp name="SUBJECT">BODY</stringProp>
+              </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+              <hashTree/>
+              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="AutoChkClean" enabled="true">
+                <stringProp name="BeanShellAssertion.query"></stringProp>
+                <stringProp name="BeanShellAssertion.filename">test/funcLib/AutoChkClean.bsh.java</stringProp>
+                <stringProp name="BeanShellAssertion.parameters"></stringProp>
+                <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+              </BeanShellAssertion>
+              <hashTree/>
+            </hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Rest2_GetSrv(**kw)" enabled="true">
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Keyx" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Keyx</stringProp>
+                    <stringProp name="Argument.value">Rest2_GetSrv</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_MUST" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_MUST</stringProp>
+                    <stringProp name="Argument.value">e_code</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_op" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_op</stringProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_data" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_data</stringProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_CHK" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_CHK</stringProp>
+                    <stringProp name="Argument.value">code, sid</stringProp>
+                    <stringProp name="Argument.desc">,分割的自动检查变量名，仅关键字使用</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_FACTMUST" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_FACTMUST</stringProp>
+                    <stringProp name="Argument.value">${DB.G_FALSE}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="TestPlan.comments">开发者账号信息查询</stringProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if e_code!=000000: SHOULD!@sid" enabled="true">
+                <stringProp name="IfController.condition">&apos;${V.l_e_code}&apos;!=&apos;000000&apos;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="SHOULD!@sid" enabled="true">
+                  <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="V.l_e_sid" elementType="Argument">
+                        <stringProp name="Argument.name">V.l_e_sid</stringProp>
+                        <stringProp name="Argument.value">${DB.G_NULL}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                </kg.apc.jmeter.control.ParameterizedController>
+                <hashTree/>
+                <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug &apos;${V.l_e_code}&apos;!=&apos;000000&apos;" enabled="true">
+                  <boolProp name="displayJMeterProperties">false</boolProp>
+                  <boolProp name="displayJMeterVariables">true</boolProp>
+                  <boolProp name="displaySamplerProperties">true</boolProp>
+                  <boolProp name="displaySystemProperties">false</boolProp>
+                </DebugPostProcessor>
+                <hashTree/>
+                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="rest_get.__call__()" enabled="true">
+                  <collectionProp name="ModuleController.node_path">
+                    <stringProp name="23750841">工作台</stringProp>
+                    <stringProp name="-1082251473">TestProj</stringProp>
+                    <stringProp name="20999648">函数库</stringProp>
+                    <stringProp name="-818998366">dv.DvRest底层函数</stringProp>
+                    <stringProp name="612188160">rest_get(**kw)</stringProp>
+                  </collectionProp>
+                </ModuleController>
+                <hashTree/>
+                <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="V.l_f_sid" enabled="true">
+                  <stringProp name="VAR">V.l_f_sid</stringProp>
+                  <stringProp name="JSONPATH">$.resp.account.accountSid</stringProp>
+                  <stringProp name="DEFAULT">${DB.G_NULL}</stringProp>
+                  <stringProp name="VARIABLE"></stringProp>
+                  <stringProp name="SUBJECT">BODY</stringProp>
+                </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+                <hashTree/>
+                <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="AutoChkClean" enabled="true">
+                  <stringProp name="BeanShellAssertion.query"></stringProp>
+                  <stringProp name="BeanShellAssertion.filename">test/funcLib/AutoChkClean.bsh.java</stringProp>
+                  <stringProp name="BeanShellAssertion.parameters"></stringProp>
+                  <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+                </BeanShellAssertion>
+                <hashTree/>
+              </hashTree>
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if e_code==000000: SHOULD!@sid" enabled="true">
+                <stringProp name="IfController.condition">&apos;${V.l_e_code}&apos;==&apos;000000&apos;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="SHOULD@sid" enabled="true">
+                  <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="V.l_en_sid" elementType="Argument">
+                        <stringProp name="Argument.name">V.l_en_sid</stringProp>
+                        <stringProp name="Argument.value">${DB.G_NULL}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                </kg.apc.jmeter.control.ParameterizedController>
+                <hashTree/>
+                <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug &apos;${V.l_e_code}&apos;==&apos;000000&apos;" enabled="true">
+                  <boolProp name="displayJMeterProperties">false</boolProp>
+                  <boolProp name="displayJMeterVariables">true</boolProp>
+                  <boolProp name="displaySamplerProperties">true</boolProp>
+                  <boolProp name="displaySystemProperties">false</boolProp>
+                </DebugPostProcessor>
+                <hashTree/>
+                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="rest_get.__call__()" enabled="true">
+                  <collectionProp name="ModuleController.node_path">
+                    <stringProp name="23750841">工作台</stringProp>
+                    <stringProp name="-1082251473">TestProj</stringProp>
+                    <stringProp name="20999648">函数库</stringProp>
+                    <stringProp name="-818998366">dv.DvRest底层函数</stringProp>
+                    <stringProp name="612188160">rest_get(**kw)</stringProp>
+                  </collectionProp>
+                </ModuleController>
+                <hashTree/>
+                <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="V.l_f_sid" enabled="true">
+                  <stringProp name="VAR">V.l_f_sid</stringProp>
+                  <stringProp name="JSONPATH">$.resp.account.accountSid</stringProp>
+                  <stringProp name="DEFAULT">${DB.G_NULL}</stringProp>
+                  <stringProp name="VARIABLE"></stringProp>
+                  <stringProp name="SUBJECT">BODY</stringProp>
+                </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+                <hashTree/>
+                <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="AutoChkClean" enabled="true">
+                  <stringProp name="BeanShellAssertion.query"></stringProp>
+                  <stringProp name="BeanShellAssertion.filename">test/funcLib/AutoChkClean.bsh.java</stringProp>
+                  <stringProp name="BeanShellAssertion.parameters"></stringProp>
+                  <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+                </BeanShellAssertion>
+                <hashTree/>
+              </hashTree>
+            </hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Rest2_GetCliByPhone(**kw)" enabled="false">
+              <stringProp name="TestPlan.comments">Client信息查询（Client号码）</stringProp>
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Keyx" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Keyx</stringProp>
+                    <stringProp name="Argument.value">Rest2_GetCliByPhone</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_MUST" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_MUST</stringProp>
+                    <stringProp name="Argument.value">appId, phone</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_op" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_op</stringProp>
+                    <stringProp name="Argument.value">/ClientsByMobile</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_CHK" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_CHK</stringProp>
+                    <stringProp name="Argument.value">code, cliId</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <stringProp name="Argument.desc">,分割的自动检查变量名，仅关键字使用</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="data=&quot;&amp;appId=${appId}&amp;mobile=${mobile}&quot;" enabled="true">
+                <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="V.l_data" elementType="Argument">
+                      <stringProp name="Argument.name">V.l_data</stringProp>
+                      <stringProp name="Argument.value">&amp;appId=${V.l_appId}&amp;mobile=${V.l_mobile}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </kg.apc.jmeter.control.ParameterizedController>
+              <hashTree/>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="rest_get.__call__()" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="23750841">工作台</stringProp>
+                  <stringProp name="-1082251473">TestProj</stringProp>
+                  <stringProp name="20999648">函数库</stringProp>
+                  <stringProp name="-818998366">dv.DvRest底层函数</stringProp>
+                  <stringProp name="612188160">rest_get(**kw)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+              <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="V.l_f_cliId" enabled="true">
+                <stringProp name="VAR">V.l_f_cliId</stringProp>
+                <stringProp name="JSONPATH">$.resp.client.clientNumber</stringProp>
+                <stringProp name="DEFAULT">${DB.G_NULL}</stringProp>
+                <stringProp name="VARIABLE"></stringProp>
+                <stringProp name="SUBJECT">BODY</stringProp>
+              </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+              <hashTree/>
+              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="AutoChkClean" enabled="true">
+                <stringProp name="BeanShellAssertion.query"></stringProp>
+                <stringProp name="BeanShellAssertion.filename">test/funcLib/AutoChkClean.bsh.java</stringProp>
+                <stringProp name="BeanShellAssertion.parameters"></stringProp>
+                <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+              </BeanShellAssertion>
+              <hashTree/>
+            </hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Rest2_AddCli(**kw)" enabled="false">
+              <stringProp name="TestPlan.comments">Client信息查询（Client号码）</stringProp>
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Keyx" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Keyx</stringProp>
+                    <stringProp name="Argument.value">Rest2_GetCliById</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_op" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_op</stringProp>
+                    <stringProp name="Argument.value">/Clients</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_CHK" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_CHK</stringProp>
+                    <stringProp name="Argument.value">code, cliId</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <stringProp name="Argument.desc">,分割的自动检查变量名，仅关键字使用</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="rest_get.__call__()" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="23750841">工作台</stringProp>
+                  <stringProp name="-1082251473">TestProj</stringProp>
+                  <stringProp name="20999648">函数库</stringProp>
+                  <stringProp name="-1539404941">Demo002版本</stringProp>
+                  <stringProp name="-818998366">dv.DvRest底层函数</stringProp>
+                  <stringProp name="612188160">rest_get(**kw)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+              <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="V.l_f_cliId" enabled="true">
+                <stringProp name="VAR">V.l_f_cliId</stringProp>
+                <stringProp name="JSONPATH">$.resp.client.clientNumber</stringProp>
+                <stringProp name="DEFAULT">${DB.G_NULL}</stringProp>
+                <stringProp name="VARIABLE"></stringProp>
+                <stringProp name="SUBJECT">BODY</stringProp>
+              </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+              <hashTree/>
+              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="AutoChkClean" enabled="true">
+                <stringProp name="BeanShellAssertion.query"></stringProp>
+                <stringProp name="BeanShellAssertion.filename">test/funcLib/AutoChkClean.bsh.java</stringProp>
+                <stringProp name="BeanShellAssertion.parameters"></stringProp>
+                <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+              </BeanShellAssertion>
+              <hashTree/>
+            </hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Rest2_GetCliById2(**kw)" enabled="true">
+              <stringProp name="TestPlan.comments">Client信息查询（Client号码）</stringProp>
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Keyx" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Keyx</stringProp>
+                    <stringProp name="Argument.value">Rest2_GetCliById</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_cliId" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_cliId</stringProp>
+                    <stringProp name="Argument.value">MUST</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_e_cliId" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_e_cliId</stringProp>
+                    <stringProp name="Argument.value">${V.l_cliId}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_op" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_op</stringProp>
+                    <stringProp name="Argument.value">/Clients</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="rest_get.__call__()" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="23750841">工作台</stringProp>
+                  <stringProp name="-1082251473">TestProj</stringProp>
+                  <stringProp name="20999648">函数库</stringProp>
+                  <stringProp name="-818998366">dv.DvRest底层函数</stringProp>
+                  <stringProp name="612188160">rest_get(**kw)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+              <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="V.l_f_cliId" enabled="true">
+                <stringProp name="VAR">V.l_f_cliId</stringProp>
+                <stringProp name="JSONPATH">$.resp.client.cliId</stringProp>
+                <stringProp name="DEFAULT">${DB.G_NULL}</stringProp>
+                <stringProp name="VARIABLE"></stringProp>
+                <stringProp name="SUBJECT">BODY</stringProp>
+              </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+              <hashTree/>
+              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="AutoChkClean" enabled="true">
+                <stringProp name="BeanShellAssertion.query"></stringProp>
+                <stringProp name="BeanShellAssertion.filename">test/funcLib/AutoChkClean.bsh.java</stringProp>
+                <stringProp name="BeanShellAssertion.parameters"></stringProp>
+                <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+              </BeanShellAssertion>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Demo001-- 仅变量抽取" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <longProp name="ThreadGroup.start_time">1474427657000</longProp>
+        <longProp name="ThreadGroup.end_time">1474427657000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="1] Client信息查询（Client号码）" enabled="true"/>
+        <hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="1.1) 有效的cliId，应成功" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.l_sid" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_sid</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Sid}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_token" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_token</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Token}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_ip" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_ip</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Ip}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_port" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_port</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Port}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_pro" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_pro</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Pro}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_op" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_op</stringProp>
+                  <stringProp name="Argument.value">/Clients</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_data" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_data</stringProp>
+                  <stringProp name="Argument.value">&amp;cliId=${DB.Rest_CliId}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_e_code" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_e_code</stringProp>
+                  <stringProp name="Argument.value">000000</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 rest_get" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${V.l_ip}</stringProp>
+              <stringProp name="HTTPSampler.port">${V.l_port}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">${V.l_pro}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/2014-06-30/Accounts/${V.l_sid}${V.l_op}?token=${V.l_token}${V.l_data}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySamplerProperties">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugPostProcessor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="jp@gc - JSON Path Assertion" enabled="true">
+              <stringProp name="JSON_PATH">$.resp.respCode</stringProp>
+              <stringProp name="EXPECTED_VALUE">${V.l_e_code}</stringProp>
+              <boolProp name="JSONVALIDATION">true</boolProp>
+              <boolProp name="EXPECT_NULL">false</boolProp>
+              <boolProp name="INVERT">false</boolProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="1.2) token无效，应失败" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.l_sid" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_sid</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Sid}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_token" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_token</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Token}xxx</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_ip" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_ip</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Ip}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_port" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_port</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Port}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_pro" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_pro</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Pro}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_op" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_op</stringProp>
+                  <stringProp name="Argument.value">/Clients</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_data" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_data</stringProp>
+                  <stringProp name="Argument.value">&amp;cliId=${DB.Rest_CliId}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_e_code" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_e_code</stringProp>
+                  <stringProp name="Argument.value">999999</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 rest_get" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${V.l_ip}</stringProp>
+              <stringProp name="HTTPSampler.port">${V.l_port}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">${V.l_pro}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/2014-06-30/Accounts/${V.l_sid}${V.l_op}?token=${V.l_token}${V.l_data}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
+              <boolProp name="displayJMeterProperties">true</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySamplerProperties">true</boolProp>
+              <boolProp name="displaySystemProperties">true</boolProp>
+            </DebugPostProcessor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="jp@gc - JSON Path Assertion" enabled="true">
+              <stringProp name="JSON_PATH">$.resp.respCode</stringProp>
+              <stringProp name="EXPECTED_VALUE">${V.l_e_code}</stringProp>
+              <boolProp name="JSONVALIDATION">true</boolProp>
+              <boolProp name="EXPECT_NULL">false</boolProp>
+              <boolProp name="INVERT">false</boolProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="1.3) 无效的cliId，应失败(故意出错)" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.l_sid" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_sid</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Sid}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_token" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_token</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Token}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_ip" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_ip</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Ip}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_port" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_port</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Port}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_pro" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_pro</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Pro}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_op" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_op</stringProp>
+                  <stringProp name="Argument.value">/Clients</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_data" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_data</stringProp>
+                  <stringProp name="Argument.value">&amp;cliId=${DB.Rest_CliId}xxx</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_e_code" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_e_code</stringProp>
+                  <stringProp name="Argument.value">C999999</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 rest_get" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${V.l_ip}</stringProp>
+              <stringProp name="HTTPSampler.port">${V.l_port}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">${V.l_pro}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/2014-06-30/Accounts/${V.l_sid}${V.l_op}?token=${V.l_token}${V.l_data}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySamplerProperties">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugPostProcessor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="jp@gc - JSON Path Assertion" enabled="true">
+              <stringProp name="JSON_PATH">$.resp.respCode</stringProp>
+              <stringProp name="EXPECTED_VALUE">${V.l_e_code}</stringProp>
+              <boolProp name="JSONVALIDATION">true</boolProp>
+              <boolProp name="EXPECT_NULL">false</boolProp>
+              <boolProp name="INVERT">false</boolProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="2] 开发者账号信息查询" enabled="true"/>
+        <hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="2.1) 有效的cliId，应成功" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.l_sid" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_sid</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Sid}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_token" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_token</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Token}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_ip" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_ip</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Ip}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_port" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_port</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Port}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_pro" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_pro</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Pro}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_op" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_op</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_data" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_data</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_e_code" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_e_code</stringProp>
+                  <stringProp name="Argument.value">000000</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 rest_get" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${V.l_ip}</stringProp>
+              <stringProp name="HTTPSampler.port">${V.l_port}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">${V.l_pro}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/2014-06-30/Accounts/${V.l_sid}${V.l_op}?token=${V.l_token}${V.l_data}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySamplerProperties">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugPostProcessor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="jp@gc - JSON Path Assertion" enabled="true">
+              <stringProp name="JSON_PATH">$.resp.respCode</stringProp>
+              <stringProp name="EXPECTED_VALUE">${V.l_e_code}</stringProp>
+              <boolProp name="JSONVALIDATION">true</boolProp>
+              <boolProp name="EXPECT_NULL">false</boolProp>
+              <boolProp name="INVERT">false</boolProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="2.2) token无效，应失败101116" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.l_sid" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_sid</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Sid}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_token" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_token</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Token}xxx</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_ip" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_ip</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Ip}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_port" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_port</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Port}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_pro" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_pro</stringProp>
+                  <stringProp name="Argument.value">${DB.Rest_Pro}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_op" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_op</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_data" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_data</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="V.l_e_code" elementType="Argument">
+                  <stringProp name="Argument.name">V.l_e_code</stringProp>
+                  <stringProp name="Argument.value">999999</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2 rest_get" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${V.l_ip}</stringProp>
+              <stringProp name="HTTPSampler.port">${V.l_port}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">${V.l_pro}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/2014-06-30/Accounts/${V.l_sid}${V.l_op}?token=${V.l_token}${V.l_data}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
+              <boolProp name="displayJMeterProperties">true</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySamplerProperties">true</boolProp>
+              <boolProp name="displaySystemProperties">true</boolProp>
+            </DebugPostProcessor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.gui.JSONPathAssertionGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion" testname="jp@gc - JSON Path Assertion" enabled="true">
+              <stringProp name="JSON_PATH">$.resp.respCode</stringProp>
+              <stringProp name="EXPECTED_VALUE">${V.l_e_code}</stringProp>
+              <boolProp name="JSONVALIDATION">true</boolProp>
+              <boolProp name="EXPECT_NULL">false</boolProp>
+              <boolProp name="INVERT">false</boolProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathassertion.JSONPathAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Demo002-- 两层函数封装" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <longProp name="ThreadGroup.start_time">1474427657000</longProp>
+        <longProp name="ThreadGroup.end_time">1474427657000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="1] Client信息查询（Client号码）" enabled="true">
+          <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="V.s_Item" elementType="Argument">
+                <stringProp name="Argument.name">V.s_Item</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </kg.apc.jmeter.control.ParameterizedController>
+        <hashTree>
+          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Item@${V.s_Item} ==== Start_Item ====" enabled="true">
+            <boolProp name="displayJMeterProperties">false</boolProp>
+            <boolProp name="displayJMeterVariables">true</boolProp>
+            <boolProp name="displaySystemProperties">false</boolProp>
+          </DebugSampler>
+          <hashTree/>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="1) 参数均正确，应成功" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_CaseId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CaseId</stringProp>
+                  <stringProp name="Argument.value">1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="${V.s_CasePath}) 1&gt; 查询cliId" enabled="true">
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Step" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Step</stringProp>
+                    <stringProp name="Argument.value">${V.s_CasePath}) 1&gt; 查询cliId</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_data" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_data</stringProp>
+                    <stringProp name="Argument.value">&amp;cliId=${DB.Rest_CliId}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_token" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_token</stringProp>
+                    <stringProp name="Argument.value">${DB.Rest_Token}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_e_code" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_e_code</stringProp>
+                    <stringProp name="Argument.value">000000</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Rest2_GetCliById.__call__()" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="23750841">工作台</stringProp>
+                  <stringProp name="-1082251473">TestProj</stringProp>
+                  <stringProp name="20999648">函数库</stringProp>
+                  <stringProp name="-289207119">kc.Rest配置关键字</stringProp>
+                  <stringProp name="263243892">Rest2-2014版本</stringProp>
+                  <stringProp name="1497325362">Rest2_GetCliById(**kw)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="2) token无效，应失败" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_CaseId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CaseId</stringProp>
+                  <stringProp name="Argument.value">2</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="${V.s_CasePath}) 1&gt; 查询cliId" enabled="true">
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Step" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Step</stringProp>
+                    <stringProp name="Argument.value">${V.s_CasePath}) 1&gt; 查询cliId</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_data" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_data</stringProp>
+                    <stringProp name="Argument.value">&amp;cliId=${DB.Rest_CliId}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_token" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_token</stringProp>
+                    <stringProp name="Argument.value">${DB.Rest_Token}xxx</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_e_code" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_e_code</stringProp>
+                    <stringProp name="Argument.value">999999</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Rest2_GetCliById.__call__()" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="23750841">工作台</stringProp>
+                  <stringProp name="-1082251473">TestProj</stringProp>
+                  <stringProp name="20999648">函数库</stringProp>
+                  <stringProp name="-289207119">kc.Rest配置关键字</stringProp>
+                  <stringProp name="263243892">Rest2-2014版本</stringProp>
+                  <stringProp name="1497325362">Rest2_GetCliById(**kw)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="3) 无效的cliId，应失败" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_CaseId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CaseId</stringProp>
+                  <stringProp name="Argument.value">3</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="${V.s_CasePath}) 1&gt; 查询cliId" enabled="true">
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Step" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Step</stringProp>
+                    <stringProp name="Argument.value">${V.s_CasePath}) 1&gt; 查询cliId</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_data" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_data</stringProp>
+                    <stringProp name="Argument.value">&amp;cliId=${DB.Rest_CliId}xxx</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_token" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_token</stringProp>
+                    <stringProp name="Argument.value">${DB.Rest_Token}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_e_code" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_e_code</stringProp>
+                    <stringProp name="Argument.value">999999</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Rest2_GetCliById.__call__()" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="23750841">工作台</stringProp>
+                  <stringProp name="-1082251473">TestProj</stringProp>
+                  <stringProp name="20999648">函数库</stringProp>
+                  <stringProp name="-289207119">kc.Rest配置关键字</stringProp>
+                  <stringProp name="263243892">Rest2-2014版本</stringProp>
+                  <stringProp name="1497325362">Rest2_GetCliById(**kw)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="2] 开发者账号信息查询" enabled="true">
+          <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="V.s_Item" elementType="Argument">
+                <stringProp name="Argument.name">V.s_Item</stringProp>
+                <stringProp name="Argument.value">2</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </kg.apc.jmeter.control.ParameterizedController>
+        <hashTree>
+          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Item@${V.s_Item} ==== Start_Item ====" enabled="true">
+            <boolProp name="displayJMeterProperties">false</boolProp>
+            <boolProp name="displayJMeterVariables">true</boolProp>
+            <boolProp name="displaySystemProperties">false</boolProp>
+          </DebugSampler>
+          <hashTree/>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="1) 参数均正确，应成功" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_CaseId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CaseId</stringProp>
+                  <stringProp name="Argument.value">1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="${V.s_CasePath}) 1&gt; 查询sid" enabled="true">
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Step" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Step</stringProp>
+                    <stringProp name="Argument.value">${V.s_CasePath}) 1&gt; 查询sid</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_sid" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_sid</stringProp>
+                    <stringProp name="Argument.value">${DB.Rest_Sid}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_token" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_token</stringProp>
+                    <stringProp name="Argument.value">${DB.Rest_Token}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_e_code" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_e_code</stringProp>
+                    <stringProp name="Argument.value">000000</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Rest2_GetSrv.__call__()" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="23750841">工作台</stringProp>
+                  <stringProp name="-1082251473">TestProj</stringProp>
+                  <stringProp name="20999648">函数库</stringProp>
+                  <stringProp name="-289207119">kc.Rest配置关键字</stringProp>
+                  <stringProp name="263243892">Rest2-2014版本</stringProp>
+                  <stringProp name="77920727">Rest2_GetSrv(**kw)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="2) token无效，应失败" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="V.s_CaseId" elementType="Argument">
+                  <stringProp name="Argument.name">V.s_CaseId</stringProp>
+                  <stringProp name="Argument.value">2</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="${V.s_CasePath}) 1&gt; 查询sid" enabled="true">
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Step" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Step</stringProp>
+                    <stringProp name="Argument.value">${V.s_CasePath}) 1&gt; 查询sid</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_sid" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_sid</stringProp>
+                    <stringProp name="Argument.value">${DB.Rest_Sid}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_token" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_token</stringProp>
+                    <stringProp name="Argument.value">${DB.Rest_Token}xxx</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                  <elementProp name="V.l_e_code" elementType="Argument">
+                    <stringProp name="Argument.name">V.l_e_code</stringProp>
+                    <stringProp name="Argument.value">999999</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Rest2_GetSrv.__call__()" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="23750841">工作台</stringProp>
+                  <stringProp name="-1082251473">TestProj</stringProp>
+                  <stringProp name="20999648">函数库</stringProp>
+                  <stringProp name="-289207119">kc.Rest配置关键字</stringProp>
+                  <stringProp name="263243892">Rest2-2014版本</stringProp>
+                  <stringProp name="77920727">Rest2_GetSrv(**kw)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Exam.Intf-- 用例数据驱动" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <longProp name="ThreadGroup.start_time">1474427657000</longProp>
+        <longProp name="ThreadGroup.end_time">1474427657000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Exam.Intf 示例接口" enabled="true">
+          <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="V.s_ModuleId" elementType="Argument">
+                <stringProp name="Argument.name">V.s_ModuleId</stringProp>
+                <stringProp name="Argument.value">Exam.Intf</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </kg.apc.jmeter.control.ParameterizedController>
+        <hashTree>
+          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="@TM" enabled="true">
+            <boolProp name="displayJMeterProperties">false</boolProp>
+            <boolProp name="displayJMeterVariables">false</boolProp>
+            <boolProp name="displaySystemProperties">false</boolProp>
+          </DebugSampler>
+          <hashTree/>
+          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Exam.Intf] 示例接口" enabled="true">
+            <boolProp name="displayJMeterProperties">false</boolProp>
+            <boolProp name="displayJMeterVariables">false</boolProp>
+            <boolProp name="displaySystemProperties">false</boolProp>
+          </DebugSampler>
+          <hashTree/>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Module_Setup" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Module_Setup.__call__()" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="23750841">工作台</stringProp>
+                <stringProp name="-1082251473">TestProj</stringProp>
+                <stringProp name="20999648">函数库</stringProp>
+                <stringProp name="-989572726">ct.RunNg框架函数</stringProp>
+                <stringProp name="1749100266">Module_Setup</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="${V.s_CasePath}) 1&gt; Module_Setup1" enabled="true">
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Step" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Step</stringProp>
+                    <stringProp name="Argument.value">${V.s_CasePath}) 1&gt; Module_Setup1</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${V.s_CasePath}) 1&gt; Module_Setup1" enabled="true">
+                <boolProp name="displayJMeterProperties">false</boolProp>
+                <boolProp name="displayJMeterVariables">true</boolProp>
+                <boolProp name="displaySystemProperties">false</boolProp>
+              </DebugSampler>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While 测试用例数据管理文件" enabled="true">
+            <stringProp name="WhileController.condition">${__javaScript(&quot;${V.s_ItemId}&quot; != &quot;&lt;EOF&gt;&quot;)}</stringProp>
+          </WhileController>
+          <hashTree>
+            <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+              <stringProp name="delimiter">\t</stringProp>
+              <stringProp name="fileEncoding"></stringProp>
+              <stringProp name="filename">_Exam.Intf.tsv.txt</stringProp>
+              <boolProp name="quotedData">true</boolProp>
+              <boolProp name="recycle">false</boolProp>
+              <stringProp name="shareMode">shareMode.group</stringProp>
+              <boolProp name="stopThread">false</boolProp>
+              <stringProp name="variableNames">V.s_ItemId,V.s_Item,V.s_CaseId,V.s_Case,V.s_Sw,V.s_Pri,V.s_v0,V.s_v1,V.s_v2,V.s_v3,V.s_v4,V.s_v5,V.s_v6,V.s_v7,V.s_v8,V.s_v9</stringProp>
+            </CSVDataSet>
+            <hashTree/>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="各测试项开始.__call__()" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="23750841">工作台</stringProp>
+                <stringProp name="-1082251473">TestProj</stringProp>
+                <stringProp name="20999648">函数库</stringProp>
+                <stringProp name="-989572726">ct.RunNg框架函数</stringProp>
+                <stringProp name="-1545404586">各测试项开始</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="各测试用例开始.__call__()" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="23750841">工作台</stringProp>
+                <stringProp name="-1082251473">TestProj</stringProp>
+                <stringProp name="20999648">函数库</stringProp>
+                <stringProp name="-989572726">ct.RunNg框架函数</stringProp>
+                <stringProp name="-935980708">各测试用例开始</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+            <SwitchController guiclass="SwitchControllerGui" testclass="SwitchController" testname="Switch 各测试项逻辑" enabled="true">
+              <stringProp name="SwitchController.value">${__javaScript(isNaN(parseInt(&quot;${V.s_ItemId}&quot;)) ? -1 : parseInt(&quot;${V.s_ItemId}&quot;)-1,)}</stringProp>
+            </SwitchController>
+            <hashTree>
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1] Client信息查询（Client号码）" enabled="true">
+                <stringProp name="IfController.condition">${__evalVar(INI.__IfCase)}</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="${V.s_CasePath}.1&gt; 查询cliId" enabled="true">
+                  <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="V.s_Step" elementType="Argument">
+                        <stringProp name="Argument.name">V.s_Step</stringProp>
+                        <stringProp name="Argument.value">${V.s_CasePath}.1&gt; 查询cliId</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                      <elementProp name="V.l_data" elementType="Argument">
+                        <stringProp name="Argument.name">V.l_data</stringProp>
+                        <stringProp name="Argument.value">${__evalVar(V._data)}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                      <elementProp name="V.l_token" elementType="Argument">
+                        <stringProp name="Argument.name">V.l_token</stringProp>
+                        <stringProp name="Argument.value">${__evalVar(V._token)}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                      <elementProp name="V.l_e_code" elementType="Argument">
+                        <stringProp name="Argument.name">V.l_e_code</stringProp>
+                        <stringProp name="Argument.value">${__evalVar(V._e_code)}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                      <elementProp name="V.l_e_cliId" elementType="Argument">
+                        <stringProp name="Argument.name">V.l_e_cliId</stringProp>
+                        <stringProp name="Argument.value">${__evalVar(V._e_cliId)}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                </kg.apc.jmeter.control.ParameterizedController>
+                <hashTree>
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Rest2_GetCliById.__call__()" enabled="true">
+                    <collectionProp name="ModuleController.node_path">
+                      <stringProp name="23750841">工作台</stringProp>
+                      <stringProp name="-1082251473">TestProj</stringProp>
+                      <stringProp name="20999648">函数库</stringProp>
+                      <stringProp name="-289207119">kc.Rest配置关键字</stringProp>
+                      <stringProp name="263243892">Rest2-2014版本</stringProp>
+                      <stringProp name="1497325362">Rest2_GetCliById(**kw)</stringProp>
+                    </collectionProp>
+                  </ModuleController>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2] 开发者账号信息查询" enabled="true">
+                <stringProp name="IfController.condition">${__evalVar(INI.__IfCase)}</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="${V.s_CasePath}.1&gt; 查询sid" enabled="true">
+                  <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="V.s_Step" elementType="Argument">
+                        <stringProp name="Argument.name">V.s_Step</stringProp>
+                        <stringProp name="Argument.value">${V.s_CasePath}.1&gt; 查询sid</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                      <elementProp name="V.l_sid" elementType="Argument">
+                        <stringProp name="Argument.name">V.l_sid</stringProp>
+                        <stringProp name="Argument.value">${DB.Rest_Sid}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                      <elementProp name="V.l_token" elementType="Argument">
+                        <stringProp name="Argument.name">V.l_token</stringProp>
+                        <stringProp name="Argument.value">${__evalVar(V._token)}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                      <elementProp name="V.l_e_code" elementType="Argument">
+                        <stringProp name="Argument.name">V.l_e_code</stringProp>
+                        <stringProp name="Argument.value">${__evalVar(V._e_code)}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                </kg.apc.jmeter.control.ParameterizedController>
+                <hashTree>
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Rest2_GetSrv.__call__()" enabled="true">
+                    <collectionProp name="ModuleController.node_path">
+                      <stringProp name="23750841">工作台</stringProp>
+                      <stringProp name="-1082251473">TestProj</stringProp>
+                      <stringProp name="20999648">函数库</stringProp>
+                      <stringProp name="-289207119">kc.Rest配置关键字</stringProp>
+                      <stringProp name="263243892">Rest2-2014版本</stringProp>
+                      <stringProp name="77920727">Rest2_GetSrv(**kw)</stringProp>
+                    </collectionProp>
+                  </ModuleController>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+          <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="Module_Teardown" enabled="true">
+            <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </kg.apc.jmeter.control.ParameterizedController>
+          <hashTree>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Module_Teardown.__call__()" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="23750841">工作台</stringProp>
+                <stringProp name="-1082251473">TestProj</stringProp>
+                <stringProp name="20999648">函数库</stringProp>
+                <stringProp name="-989572726">ct.RunNg框架函数</stringProp>
+                <stringProp name="2098628215">Module_Teardown</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+            <kg.apc.jmeter.control.ParameterizedController guiclass="kg.apc.jmeter.control.ParameterizedControllerGui" testclass="kg.apc.jmeter.control.ParameterizedController" testname="${V.s_CasePath}) 1&gt; Module_Teardown1" enabled="true">
+              <elementProp name="ParameterizedController" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="V.s_Step" elementType="Argument">
+                    <stringProp name="Argument.name">V.s_Step</stringProp>
+                    <stringProp name="Argument.value">${V.s_CasePath}) 1&gt; Module_Teardown1</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </kg.apc.jmeter.control.ParameterizedController>
+            <hashTree>
+              <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${V.s_CasePath}) 1&gt; Module_Teardown1" enabled="true">
+                <boolProp name="displayJMeterProperties">false</boolProp>
+                <boolProp name="displayJMeterVariables">true</boolProp>
+                <boolProp name="displaySystemProperties">false</boolProp>
+              </DebugSampler>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="0&gt; 聚合报告" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <threadCounts>true</threadCounts>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="0&gt; 察看结果树" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <threadCounts>true</threadCounts>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="线程组" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1483927646000</longProp>
+        <longProp name="ThreadGroup.end_time">1483927646000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+          <stringProp name="BeanShellSampler.query"></stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <BSFSampler guiclass="TestBeanGUI" testclass="BSFSampler" testname="BSF Sampler" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script"></stringProp>
+          <stringProp name="scriptLanguage"></stringProp>
+        </BSFSampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
+          <stringProp name="cacheKey"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script"></stringProp>
+          <stringProp name="scriptLanguage"></stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
